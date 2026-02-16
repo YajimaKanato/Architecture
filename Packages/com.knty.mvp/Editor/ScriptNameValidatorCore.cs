@@ -5,7 +5,7 @@ using System;
 
 namespace KNTy.MVP.Editor
 {
-    static class ScriptNameValidatorCore
+    internal static class ScriptNameValidatorCore
     {
         static readonly NamingRule[] Rules =
         {

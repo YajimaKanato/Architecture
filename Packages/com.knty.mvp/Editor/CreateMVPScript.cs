@@ -12,7 +12,7 @@ namespace KNTy.MVP.Editor
     /// <remarks>
     /// MVPパターンを意識した開発をサポートするクラス
     /// </remarks>
-    class CreateMVPScript : EditorWindow
+    internal class CreateMVPScript : EditorWindow
     {
         enum CreateMenu
         {
@@ -33,7 +33,16 @@ namespace KNTy.MVP.Editor
 
             using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_className)))
             {
-                if (GUILayout.Button("Create"))
+                var pressed = GUILayout.Button("Create");
+                var e = Event.current;
+                if (!string.IsNullOrEmpty(_className) &&
+                    e.type == EventType.KeyDown &&
+                    (e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter))
+                {
+                    pressed = true;
+                    e.Use();
+                }
+                if (pressed)
                 {
                     switch (_createMenu)
                     {
@@ -52,7 +61,8 @@ namespace KNTy.MVP.Editor
         }
 
         #region Model
-        [MenuItem("Assets/Create/MVP/Model && RuntimeModel")]
+        [MenuItem("MVP/Create/Model && RuntimeModel")]
+        [MenuItem("Assets/Create/MVP/Model && RuntimeModel", false, 10)]
         static void OpenCreateModelFromMenu()
         {
             OpenCreateModel();
@@ -88,7 +98,8 @@ namespace KNTy.MVP.Editor
         }
         #endregion
         #region View & Presenter
-        [MenuItem("Assets/Create/MVP/View && Presenter")]
+        [MenuItem("MVP/Create/View && Presenter")]
+        [MenuItem("Assets/Create/MVP/View && Presenter", false, 20)]
         static void OpenCreateViewAndPresenterFromMenu()
         {
             OpenCreateViewAndPresenter();

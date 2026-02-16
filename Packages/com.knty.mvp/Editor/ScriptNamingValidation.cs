@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace KNTy.MVP.Editor
 {
-    class ScriptNamingValidation
+    internal class ScriptNamingValidation
     {
-        [MenuItem("Tools/MVP/Script Naming Validation")]
+        [MenuItem("MVP/Validation/Script Naming Validation")]
         static void ScriptNamingValidator()
         {
             var guids = AssetDatabase.FindAssets("t:MonoScript");

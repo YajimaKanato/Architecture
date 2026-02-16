@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace KNTy.MVP.Editor
 {
-    class ScriptNameValidator : AssetPostprocessor
+    internal class ScriptNameValidator : AssetPostprocessor
     {
         static void OnPostprocessAllAssets(
             string[] importedAssets,
