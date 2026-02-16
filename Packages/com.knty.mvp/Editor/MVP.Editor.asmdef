@@ -1,0 +1,18 @@
+{
+    "name": "MVP.Editor",
+    "rootNamespace": "KNTy.MVP.Editor",
+    "references": [
+        "GUID:0e43ebc6dae1625418b9c181cc7efe58"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
