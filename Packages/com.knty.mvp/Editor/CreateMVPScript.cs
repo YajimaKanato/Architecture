@@ -91,8 +91,8 @@ namespace KNTy.MVP.Editor
             var modelPath = EnsureFolder(root, "Model");
             var runtimeModelPath = EnsureFolder(root, "RuntimeModel");
 
-            CreateScript(modelPath, $"{name}Model.cs", ModelTemplate(name));
-            CreateScript(runtimeModelPath, $"{name}RuntimeModel.cs", RuntimeModelTemplate(name));
+            CreateScript(modelPath, $"{name}Model.cs", Model(name));
+            CreateScript(runtimeModelPath, $"{name}RuntimeModel.cs", RuntimeModel(name));
 
             AssetDatabase.Refresh();
         }
@@ -128,8 +128,8 @@ namespace KNTy.MVP.Editor
             var presenterPath = EnsureFolder(root, "Presenter");
             var viewPath = EnsureFolder(root, "View");
 
-            CreateScript(presenterPath, $"{name}Presenter.cs", PresenterTemplate(name));
-            CreateScript(viewPath, $"{name}View.cs", ViewTemplate(name));
+            CreateScript(presenterPath, $"{name}Presenter.cs", Presenter(name));
+            CreateScript(viewPath, $"{name}View.cs", View(name));
 
             AssetDatabase.Refresh();
         }
@@ -210,36 +210,14 @@ namespace KNTy.MVP.Editor
         }
 
 
-        static string ModelTemplate(string name) =>
-    $@"using KNTy.MVP.Runtime;
-using UnityEngine;
+        static string Model(string name) => ModelTemplate.Model(name);
 
-[CreateAssetMenu(fileName = ""{name}Model"", menuName = ""Models/{name}Model"")]
-public class {name}Model : ModelBase<{name}RuntimeModel>
-{{
-    public override {name}RuntimeModel CreateRuntimeModel()
-    {{
-        return new {name}RuntimeModel(this);
-    }}
-}}";
+        static string RuntimeModel(string name) => RuntimeModelTemplate.RuntimeModel(name);
 
-        static string RuntimeModelTemplate(string name) =>
-    $@"using KNTy.MVP.Runtime;
-using UnityEngine;
 
-public class {name}RuntimeModel : IRuntimeModel
-{{
-    public {name}RuntimeModel({name}Model model)
-    {{
+        static string Presenter(string name) => PresenterTemplate.Presenter(name);
 
-    }}
-}}";
-
-        static string PresenterTemplate(string name) =>
-            "";
-
-        static string ViewTemplate(string name) =>
-            "";
+        static string View(string name) => ViewTemplate.View(name);
     }
 }
 #endif

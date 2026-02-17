@@ -1,8 +1,8 @@
-using UnityEngine;
+using System;
 
 namespace KNTy.MVP.Runtime
 {
-    public interface IRuntimeModel
+    public interface IRuntimeModel : IDisposable, IInitialize
     {
 
     }

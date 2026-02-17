@@ -10,9 +10,9 @@ namespace KNTy.MVP.Editor
         static readonly NamingRule[] Rules =
         {
         new NamingRule(RuleType.GenericClass, "ModelBase", "Model"),
-        new NamingRule(RuleType.Interface, "IRuntimeModel", "RuntimeModel"),
+        new NamingRule(RuleType.BaseClass, "RuntimeModelBase", "RuntimeModel"),
         new NamingRule(RuleType.BaseClass, "ViewBase", "View"),
-        new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),
+        new NamingRule(RuleType.GenericClass, "PresenterBase", "Presenter"),
     };
 
         public static void Validate(MonoScript mono)
