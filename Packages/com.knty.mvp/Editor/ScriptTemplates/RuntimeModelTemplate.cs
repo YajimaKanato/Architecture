@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace KNTy.MVP.Editor
 {
     internal static class RuntimeModelTemplate
@@ -7,19 +5,21 @@ namespace KNTy.MVP.Editor
         public static string RuntimeModel(string name) =>
 $@"using KNTy.MVP.Runtime;
 
-public class {name}RuntimeModel : IRuntimeModel
+public class {name}RuntimeModel : RuntimeModelBase
 {{
+    public override string DebugLabel => GetType().Name;
+
     public {name}RuntimeModel({name}Model model)
     {{
 
     }}
 
-    public void Initialize()
+    public override void Initialize()
     {{
 
     }}
 
-    public void Dispose()
+    public override void Dispose()
     {{
 
     }}

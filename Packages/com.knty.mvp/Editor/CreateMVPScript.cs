@@ -6,12 +6,6 @@ using UnityEditor.ShortcutManagement;
 
 namespace KNTy.MVP.Editor
 {
-    /// <summary>
-    ///
-    /// </summary>
-    /// <remarks>
-    /// MVPパターンを意識した開発をサポートするクラス
-    /// </remarks>
     internal class CreateMVPScript : EditorWindow
     {
         enum CreateMenu
@@ -23,6 +17,11 @@ namespace KNTy.MVP.Editor
 
         string _className = "New";
         CreateMenu _createMenu = CreateMenu.None;
+
+        static string Model(string name) => ModelTemplate.Model(name);
+        static string RuntimeModel(string name) => RuntimeModelTemplate.RuntimeModel(name);
+        static string Presenter(string name) => PresenterTemplate.Presenter(name);
+        static string View(string name) => ViewTemplate.View(name);
 
         private void OnGUI()
         {
@@ -61,7 +60,7 @@ namespace KNTy.MVP.Editor
         }
 
         #region Model
-        [MenuItem("MVP/Create/Model && RuntimeModel")]
+        [MenuItem("MVP/Create/Script/Model && RuntimeModel")]
         [MenuItem("Assets/Create/MVP/Model && RuntimeModel", false, 10)]
         static void OpenCreateModelFromMenu()
         {
@@ -78,13 +77,6 @@ namespace KNTy.MVP.Editor
             window._createMenu = CreateMenu.Models;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// ～Model.csと～RuntimeModel.csを作成するメソッド
-        /// </remarks>
-        /// <param name="name">ScriptName</param>
         static void CreateModel(string name)
         {
             var root = EnsureMPVRootFolder();
@@ -98,7 +90,7 @@ namespace KNTy.MVP.Editor
         }
         #endregion
         #region View & Presenter
-        [MenuItem("MVP/Create/View && Presenter")]
+        [MenuItem("MVP/Create/Script/View && Presenter")]
         [MenuItem("Assets/Create/MVP/View && Presenter", false, 20)]
         static void OpenCreateViewAndPresenterFromMenu()
         {
@@ -115,13 +107,6 @@ namespace KNTy.MVP.Editor
             window._createMenu = CreateMenu.ViewAndPresenter;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// ～Presenter.csと～View.csを作成するメソッド
-        /// </remarks>
-        /// <param name="name">ScriptName</param>
         static void CreateViewAndPresenter(string name)
         {
             var root = EnsureMPVRootFolder();
@@ -135,28 +120,12 @@ namespace KNTy.MVP.Editor
         }
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// MVPフォルダーを作成するメソッド
-        /// </remarks>
-        /// <returns>MVPFolderPath</returns>
         static string EnsureMPVRootFolder()
         {
             EnsureFolder("Assets", "Scripts");
             return EnsureFolder("Assets/Scripts", "MVP");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 指定のフォルダーがなければ作成しフォルダーのパスを返すメソッド
-        /// </remarks>
-        /// <param name="parent">ParentFolderPath</param>
-        /// <param name="folderName">Creating FolderName</param>
-        /// <returns>FolderPath</returns>
         static string EnsureFolder(string parent, string folderName)
         {
             if (!AssetDatabase.IsValidFolder($"{parent}/{folderName}"))
@@ -167,15 +136,6 @@ namespace KNTy.MVP.Editor
             return $"{parent}/{folderName}";
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 指定のフォルダーにテンプレートに沿ったスクリプトを作成するメソッド
-        /// </remarks>
-        /// <param name="path">Creating Script Path</param>
-        /// <param name="scriptName">Creating Script Name</param>
-        /// <param name="content"></param>
         static void CreateScript(string path, string scriptName, string content)
         {
             var fullPath = Path.Combine(path, scriptName);
@@ -208,16 +168,6 @@ namespace KNTy.MVP.Editor
             };
 
         }
-
-
-        static string Model(string name) => ModelTemplate.Model(name);
-
-        static string RuntimeModel(string name) => RuntimeModelTemplate.RuntimeModel(name);
-
-
-        static string Presenter(string name) => PresenterTemplate.Presenter(name);
-
-        static string View(string name) => ViewTemplate.View(name);
     }
 }
 #endif

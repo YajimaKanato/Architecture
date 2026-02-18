@@ -4,24 +4,14 @@ namespace KNTy.MVP.Runtime
     {
         protected TView _view;
 
-        public virtual string DebugLabel => GetType().Name;
-
         protected PresenterBase(TView view)
         {
             _view = view;
         }
 
-        public virtual void Initialize()
-        {
-            _view.Initialize();
-            Bind();
-        }
-
-        public virtual void Dispose()
-        {
-            Unbind();
-        }
-
+        public virtual string DebugLabel => GetType().Name;
+        public virtual void Initialize() { }
+        public virtual void Dispose() { }
         protected abstract void Bind();
         protected abstract void Unbind();
     }

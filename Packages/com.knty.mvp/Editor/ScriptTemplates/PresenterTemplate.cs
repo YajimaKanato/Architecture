@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace KNTy.MVP.Editor
 {
     internal static class PresenterTemplate
@@ -9,6 +7,8 @@ $@"using KNTy.MVP.Runtime;
 
 public class {name}Presenter : PresenterBase<{name}View>
 {{
+    public override string DebugLabel => GetType().Name;
+
     public {name}Presenter({name}View view) : base(view)
     {{
 
@@ -19,6 +19,11 @@ public class {name}Presenter : PresenterBase<{name}View>
 
     }}
 
+    public override void Dispose()
+    {{
+        
+    }}
+
     protected override void Bind()
     {{
 
@@ -27,11 +32,6 @@ public class {name}Presenter : PresenterBase<{name}View>
     protected override void Unbind()
     {{
 
-    }}
-
-    public override void Dispose()
-    {{
-        base.Dispose();
     }}
 }}";
     }

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace KNTy.MVP.Editor
 {
     internal static class ModelTemplate

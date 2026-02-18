@@ -2,6 +2,8 @@ using KNTy.MVP.Runtime;
 
 public class NewPresenter : PresenterBase<NewView>
 {
+    public override string DebugLabel => GetType().Name;
+
     public NewPresenter(NewView view) : base(view)
     {
 
@@ -12,6 +14,11 @@ public class NewPresenter : PresenterBase<NewView>
 
     }
 
+    public override void Dispose()
+    {
+        
+    }
+
     protected override void Bind()
     {
 
@@ -20,10 +27,5 @@ public class NewPresenter : PresenterBase<NewView>
     protected override void Unbind()
     {
 
-    }
-
-    public override void Dispose()
-    {
-        base.Dispose();
     }
 }

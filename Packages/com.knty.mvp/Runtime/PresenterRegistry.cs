@@ -12,16 +12,15 @@ namespace KNTy.MVP.Runtime
             _map = new Dictionary<ViewBase, IPresenter>();
         }
 
-        public void Register(ViewBase view, IPresenter presenter)
+        public bool TryRegister(ViewBase view, IPresenter presenter)
         {
-            if (view == null) throw new ArgumentNullException(nameof(view));
-            if (presenter == null) throw new ArgumentNullException(nameof(presenter));
-            if (_map.ContainsKey(view)) throw new InvalidOperationException($"View already registered : {view}");
+            if (view == null) return false;
+            if (presenter == null) return false;
 
-            _map.Add(view, presenter);
+            return _map.TryAdd(view, presenter);
         }
 
-        public bool GetPresenter<TPresenter>(ViewBase view, out TPresenter presenter) where TPresenter : IPresenter
+        public bool TryGetPresenter<TPresenter>(ViewBase view, out TPresenter presenter) where TPresenter : IPresenter
         {
             if (_map.TryGetValue(view, out var p) && p is TPresenter typed)
             {
@@ -35,7 +34,7 @@ namespace KNTy.MVP.Runtime
             }
         }
 
-        public void Unregister(ViewBase view)
+        public void TryUnregister(ViewBase view)
         {
             if (!_map.TryGetValue(view, out IPresenter presenter)) return;
             (presenter as IDisposable)?.Dispose();

@@ -1,20 +1,20 @@
 using KNTy.MVP.Runtime;
 
-public class NewRuntimeModel : IRuntimeModel
+public class NewRuntimeModel : RuntimeModelBase
 {
-    public string DebugLabel => throw new System.NotImplementedException();
+    public override string DebugLabel => GetType().Name;
 
     public NewRuntimeModel(NewModel model)
     {
 
     }
 
-    public void Initialize()
+    public override void Initialize()
     {
 
     }
 
-    public void Dispose()
+    public override void Dispose()
     {
 
     }
