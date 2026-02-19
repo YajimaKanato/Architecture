@@ -6,12 +6,14 @@ using UnityEditor.ShortcutManagement;
 
 namespace KNTy.MVP.Editor
 {
-    internal class CreateMVPScript : EditorWindow
+    internal partial class CreateMVPScript : EditorWindow
     {
         enum CreateMenu
         {
             None,
             Models,
+            PresenterCore,
+            PartialPresenter,
             ViewAndPresenter
         }
 
@@ -20,75 +22,27 @@ namespace KNTy.MVP.Editor
 
         static string Model(string name) => ModelTemplate.Model(name);
         static string RuntimeModel(string name) => RuntimeModelTemplate.RuntimeModel(name);
-        static string Presenter(string name) => PresenterTemplate.Presenter(name);
+        static string PresenterCore(string name) => PresenterTemplate.PresenterCore(name);
+        static string PartialPresenter(string className, string modelName) => PresenterTemplate.PartialPresenter(className, modelName);
         static string View(string name) => ViewTemplate.View(name);
 
         private void OnGUI()
         {
-            GUILayout.Label("Base Name", EditorStyles.boldLabel);
-            _className = EditorGUILayout.TextField("ScriptName", _className);
-
-            GUILayout.Space(10);
-
-            using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_className)))
+            switch (_createMenu)
             {
-                var pressed = GUILayout.Button("Create");
-                var e = Event.current;
-                if (!string.IsNullOrEmpty(_className) &&
-                    e.type == EventType.KeyDown &&
-                    (e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter))
-                {
-                    pressed = true;
-                    e.Use();
-                }
-                if (pressed)
-                {
-                    switch (_createMenu)
-                    {
-                        case CreateMenu.Models:
-                            CreateModel(_className);
-                            break;
-                        case CreateMenu.ViewAndPresenter:
-                            CreateViewAndPresenter(_className);
-                            break;
-                        default:
-                            break;
-                    }
-                    Close();
-                }
+                case CreateMenu.Models:
+                    ModelWindow();
+                    break;
+                case CreateMenu.PresenterCore:
+                    break;
+                case CreateMenu.PartialPresenter:
+                    PartialPresenterWindow();
+                    break;
+                case CreateMenu.ViewAndPresenter:
+                    break;
             }
         }
 
-        #region Model
-        [MenuItem("MVP/Create/Script/Model && RuntimeModel")]
-        [MenuItem("Assets/Create/MVP/Model && RuntimeModel", false, 10)]
-        static void OpenCreateModelFromMenu()
-        {
-            OpenCreateModel();
-        }
-
-        [Shortcut("MVP/Create Model && RuntimeModel", KeyCode.M, ShortcutModifiers.Control)]
-        static void OpenCreateModel()
-        {
-            var window = GetWindow<CreateMVPScript>("Create Models");
-            Vector2 windowSize = new Vector2(350, 100);
-            window.maxSize = window.minSize = windowSize;
-            window._className = "New";
-            window._createMenu = CreateMenu.Models;
-        }
-
-        static void CreateModel(string name)
-        {
-            var root = EnsureMPVRootFolder();
-            var modelPath = EnsureFolder(root, "Model");
-            var runtimeModelPath = EnsureFolder(root, "RuntimeModel");
-
-            CreateScript(modelPath, $"{name}Model.cs", Model(name));
-            CreateScript(runtimeModelPath, $"{name}RuntimeModel.cs", RuntimeModel(name));
-
-            AssetDatabase.Refresh();
-        }
-        #endregion
         #region View & Presenter
         [MenuItem("MVP/Create/Script/View && Presenter")]
         [MenuItem("Assets/Create/MVP/View && Presenter", false, 20)]
@@ -113,7 +67,7 @@ namespace KNTy.MVP.Editor
             var presenterPath = EnsureFolder(root, "Presenter");
             var viewPath = EnsureFolder(root, "View");
 
-            CreateScript(presenterPath, $"{name}Presenter.cs", Presenter(name));
+            CreateScript(presenterPath, $"{name}Presenter.cs", PresenterCore(name));
             CreateScript(viewPath, $"{name}View.cs", View(name));
 
             AssetDatabase.Refresh();

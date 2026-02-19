@@ -2,7 +2,7 @@ namespace KNTy.MVP.Editor
 {
     internal static class PresenterTemplate
     {
-        public static string Presenter(string name) =>
+        public static string PresenterCore(string name) =>
 $@"using KNTy.MVP.Runtime;
 
 public class {name}Presenter : PresenterBase<{name}View>
@@ -33,6 +33,13 @@ public class {name}Presenter : PresenterBase<{name}View>
     {{
 
     }}
+}}";
+
+        public static string PartialPresenter(string className, string modelName) =>
+$@"public partial class {className}Presenter
+{{
+    {modelName}RuntimeModel _{modelName.ToLower()}RuntimeModel;
+    public {modelName}RuntimeModel {modelName}RuntimeModel => _{modelName.ToLower()}RuntimeModel;
 }}";
     }
 }

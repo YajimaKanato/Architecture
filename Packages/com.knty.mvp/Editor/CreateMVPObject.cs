@@ -5,7 +5,7 @@ using KNTy.MVP.Runtime;
 
 namespace KNTy.MVP.Editor
 {
-    internal static class CreateMVPObject// : EditorWindow
+    internal static class CreateMVPObject
     {
         [MenuItem("MVP/Create/GameObject/MVP Manager")]
         [MenuItem("GameObject/MVP/MVP Manager")]
