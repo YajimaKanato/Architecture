@@ -6,13 +6,8 @@ namespace KNTy.MVP.Editor
 $@"using KNTy.MVP.Runtime;
 using UnityEngine;
 
-public class {name}View : ViewBase
+public class {name}View : ViewBase<{name}Presenter>
 {{
-    public override void Initialize()
-    {{
-
-    }}
-
     private void Start()
     {{
         
@@ -21,6 +16,11 @@ public class {name}View : ViewBase
     private void Update()
     {{
         
+    }}
+
+    public override void Initialize()
+    {{
+
     }}
 }}";
     }

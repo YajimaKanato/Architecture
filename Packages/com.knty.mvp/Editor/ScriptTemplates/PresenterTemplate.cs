@@ -2,18 +2,22 @@ namespace KNTy.MVP.Editor
 {
     internal static class PresenterTemplate
     {
-        public static string PresenterCore(string name) =>
+        internal static string PresenterCore(string name, string argument, string assignment) =>
 $@"using KNTy.MVP.Runtime;
 
-public class {name}Presenter : PresenterBase<{name}View>
+public partial class {name}Presenter : PresenterBase<{name}View>
 {{
-    public override string DebugLabel => GetType().Name;
-
-    public {name}Presenter({name}View view) : base(view)
+    public {name}Presenter()
     {{
 
     }}
+}}";
 
+        internal static string PresenterLifeCycle(string className) =>
+$@"using KNTy.MVP.Runtime;
+
+public partial class {className}Presenter : PresenterBase<{className}View>
+{{
     public override void Initialize()
     {{
 
@@ -21,10 +25,10 @@ public class {name}Presenter : PresenterBase<{name}View>
 
     public override void Dispose()
     {{
-        
+
     }}
 
-    protected override void Bind()
+    protected override void Bind({className}View view)
     {{
 
     }}
@@ -35,7 +39,7 @@ public class {name}Presenter : PresenterBase<{name}View>
     }}
 }}";
 
-        public static string PartialPresenter(string className, string modelName) =>
+        internal static string PartialPresenter(string className, string modelName) =>
 $@"public partial class {className}Presenter
 {{
     {modelName}RuntimeModel _{modelName.ToLower()}RuntimeModel;
