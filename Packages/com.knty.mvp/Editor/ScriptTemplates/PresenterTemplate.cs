@@ -2,14 +2,16 @@ namespace KNTy.MVP.Editor
 {
     internal static class PresenterTemplate
     {
-        internal static string PresenterCore(string name, string argument, string assignment) =>
+        internal static string PresenterCore(string name, string argument, string variable, string assignment) =>
 $@"using KNTy.MVP.Runtime;
 
 public partial class {name}Presenter : PresenterBase<{name}View>
 {{
-    public {name}Presenter()
-    {{
+{variable}
 
+    public {name}Presenter({argument})
+    {{
+{assignment}
     }}
 }}";
 

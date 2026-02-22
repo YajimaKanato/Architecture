@@ -7,7 +7,7 @@ namespace KNTy.MVP.Editor
 {
     internal static class CreateMVPScript
     {
-        static string EnsureMPVRootFolder()
+        static string EnsureMVPRootFolder()
         {
             EnsureFolder("Assets", "Scripts");
             return EnsureFolder("Assets/Scripts", "MVP");
@@ -57,7 +57,7 @@ namespace KNTy.MVP.Editor
 
         internal static void CreateModels(string className)
         {
-            var root = EnsureMPVRootFolder();
+            var root = EnsureMVPRootFolder();
             var modelPath = EnsureFolder(root, "Model");
             var runtimeModelPath = EnsureFolder(root, "RuntimeModel");
 
@@ -67,22 +67,23 @@ namespace KNTy.MVP.Editor
             AssetDatabase.Refresh();
         }
 
-        internal static void CreatePresenterCore(string className, string argument, string assignment)
+        internal static void CreatePresenterCore(string className, string argument, string variable, string assignment)
         {
-            var root = EnsureMPVRootFolder();
+            var root = EnsureMVPRootFolder();
             root = EnsureFolder(root, "Presenter");
-            var path = EnsureFolder(root, className);
+            var path = EnsureFolder(root, $"{className}Presenter");
+            className = className.Replace("Presenter", "");
 
-            CreateScript(path, $"{className}PresenterCore.cs", PresenterTemplate.PresenterCore(className, argument, assignment));
+            CreateScript(path, $"{className}PresenterCore.cs", PresenterTemplate.PresenterCore(className, argument, variable, assignment));
 
             AssetDatabase.Refresh();
         }
 
         internal static void CreatePresenterLifeCycle(string className)
         {
-            var root = EnsureMPVRootFolder();
+            var root = EnsureMVPRootFolder();
             root = EnsureFolder(root, "Presenter");
-            var path = EnsureFolder(root, className);
+            var path = EnsureFolder(root, $"{className}Presenter");
 
             CreateScript(path, $"{className}PresenterLifeCycle.cs", PresenterTemplate.PresenterLifeCycle(className));
 
@@ -91,9 +92,9 @@ namespace KNTy.MVP.Editor
 
         internal static void CreatePartialPresenter(string className, string modelName)
         {
-            var root = EnsureMPVRootFolder();
+            var root = EnsureMVPRootFolder();
             root = EnsureFolder(root, "Presenter");
-            var path = EnsureFolder(root, className);
+            var path = EnsureFolder(root, $"{className}Presenter");
             className = className.Replace("Presenter", "");
             modelName = modelName.Replace("RuntimeModel", "");
 
@@ -104,7 +105,7 @@ namespace KNTy.MVP.Editor
 
         internal static void CreateView(string className)
         {
-            var root = EnsureMPVRootFolder();
+            var root = EnsureMVPRootFolder();
             var path = EnsureFolder(root, "View");
 
             CreateScript(path, $"{className}View.cs", ViewTemplate.View(className));
