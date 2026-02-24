@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 namespace KNTy.MVP.Editor
 {
     internal static class ViewTemplate
@@ -25,3 +27,4 @@ public class {name}View : ViewBase<{name}Presenter>
 }}";
     }
 }
+#endif

@@ -1,6 +1,6 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.ShortcutManagement;
 
 namespace KNTy.MVP.Editor
 {
@@ -13,9 +13,18 @@ namespace KNTy.MVP.Editor
         static void OpenCreateViewAndPresenterFromMenu()
         {
             OpenCreateViewAndPresenter();
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+                SessionState.SetBool("OpenCreateViewAndPresenterFromMenu", true);
         }
 
-        [Shortcut("MVP/Create View && PresenterCore", KeyCode.V, ShortcutModifiers.Control)]
+        [InitializeOnLoadMethod]
+        static void ResumeCreatingViewAndPresenter()
+        {
+            if (!SessionState.GetBool("OpenCreateViewAndPresenterFromMenu", false)) return;
+            SessionState.EraseBool("OpenCreateViewAndPresenterFromMenu");
+            OpenCreateViewAndPresenter();
+        }
+
         static void OpenCreateViewAndPresenter()
         {
             var window = GetWindow<CreateMVPScriptWindow>("Create View & Presenter");
@@ -51,3 +60,4 @@ namespace KNTy.MVP.Editor
         }
     }
 }
+#endif

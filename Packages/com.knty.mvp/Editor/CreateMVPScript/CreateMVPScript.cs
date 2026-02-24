@@ -63,8 +63,6 @@ namespace KNTy.MVP.Editor
 
             CreateScript(modelPath, $"{className}Model.cs", ModelTemplate.Model(className));
             CreateScript(runtimeModelPath, $"{className}RuntimeModel.cs", RuntimeModelTemplate.RuntimeModel(className));
-
-            AssetDatabase.Refresh();
         }
 
         internal static void CreatePresenterCore(string className, string argument, string variable, string assignment)
@@ -75,8 +73,6 @@ namespace KNTy.MVP.Editor
             className = className.Replace("Presenter", "");
 
             CreateScript(path, $"{className}PresenterCore.cs", PresenterTemplate.PresenterCore(className, argument, variable, assignment));
-
-            AssetDatabase.Refresh();
         }
 
         internal static void CreatePresenterLifeCycle(string className)
@@ -86,8 +82,6 @@ namespace KNTy.MVP.Editor
             var path = EnsureFolder(root, $"{className}Presenter");
 
             CreateScript(path, $"{className}PresenterLifeCycle.cs", PresenterTemplate.PresenterLifeCycle(className));
-
-            AssetDatabase.Refresh();
         }
 
         internal static void CreatePartialPresenter(string className, string modelName)
@@ -99,8 +93,6 @@ namespace KNTy.MVP.Editor
             modelName = modelName.Replace("RuntimeModel", "");
 
             CreateScript(path, $"{className}Presenter_{modelName}.cs", PresenterTemplate.PartialPresenter(className, modelName));
-
-            AssetDatabase.Refresh();
         }
 
         internal static void CreateView(string className)
@@ -109,8 +101,6 @@ namespace KNTy.MVP.Editor
             var path = EnsureFolder(root, "View");
 
             CreateScript(path, $"{className}View.cs", ViewTemplate.View(className));
-
-            AssetDatabase.Refresh();
         }
     }
 }

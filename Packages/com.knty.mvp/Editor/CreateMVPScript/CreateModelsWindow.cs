@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.ShortcutManagement;
 
 namespace KNTy.MVP.Editor
 {
@@ -14,9 +13,18 @@ namespace KNTy.MVP.Editor
         static void OpenCreateModelFromMenu()
         {
             OpenCreateModel();
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+                SessionState.SetBool("OpenCreateModelFromMenu", true);
         }
 
-        [Shortcut("MVP/Create Model && RuntimeModel", KeyCode.M, ShortcutModifiers.Control)]
+        [InitializeOnLoadMethod]
+        static void ResumeCreatingModel()
+        {
+            if (!SessionState.GetBool("OpenCreateModelFromMenu", false)) return;
+            SessionState.EraseBool("OpenCreateModelFromMenu");
+            OpenCreateModel();
+        }
+
         static void OpenCreateModel()
         {
             var window = GetWindow<CreateMVPScriptWindow>("Create Models");

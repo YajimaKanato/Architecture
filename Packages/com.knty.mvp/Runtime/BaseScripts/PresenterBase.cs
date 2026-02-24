@@ -8,12 +8,5 @@ namespace KNTy.MVP.Runtime
         public abstract void Initialize();
         public abstract void Dispose();
     }
-
-    public abstract class PresenterBase<TView> : PresenterBase where TView : ViewBase
-    {
-        protected TView _view;
-        protected abstract void Bind(TView view);
-        protected abstract void Unbind();
-    }
 }
 

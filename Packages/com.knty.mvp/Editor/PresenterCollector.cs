@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using KNTy.MVP.Runtime;
 using System.Collections.Generic;
 using UnityEditor;
@@ -31,3 +32,4 @@ namespace KNTy.MVP.Editor
         }
     }
 }
+#endif

@@ -1,8 +1,8 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.ShortcutManagement;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -31,9 +31,18 @@ namespace KNTy.MVP.Editor
         static void OpenCreatePresenterCoreFromMenu()
         {
             OpenCreatePresenterCore();
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+                SessionState.SetBool("OpenCreatePresenterCoreFromMenu", true);
         }
 
-        [Shortcut("MVP/Create PresenterCore", KeyCode.C, ShortcutModifiers.Control)]
+        [InitializeOnLoadMethod]
+        static void ResumeCreatingPresenterCore()
+        {
+            if (!SessionState.GetBool("OpenCreatePresenterCoreFromMenu", false)) return;
+            SessionState.EraseBool("OpenCreatePresenterCoreFromMenu");
+            OpenCreatePresenterCore();
+        }
+
         static void OpenCreatePresenterCore()
         {
             var window = GetWindow<CreateMVPScriptWindow>("Create PresenterCore");
@@ -139,9 +148,18 @@ namespace KNTy.MVP.Editor
         static void OpenCreatePartialPresenterMenu()
         {
             OpenCreatePartialPresenter();
+            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
+                SessionState.SetBool("OpenCreatePartialPresenterMenu", true);
         }
 
-        [Shortcut("MVP/Create PartialPresenter", KeyCode.P, ShortcutModifiers.Control)]
+        [InitializeOnLoadMethod]
+        static void ResumeCreatingPartialPresenter()
+        {
+            if (!SessionState.GetBool("OpenCreatePartialPresenterMenu", false)) return;
+            SessionState.EraseBool("OpenCreatePartialPresenterMenu");
+            OpenCreatePartialPresenter();
+        }
+
         static void OpenCreatePartialPresenter()
         {
             var window = GetWindow<CreateMVPScriptWindow>("Create PartialPresenter");
@@ -172,3 +190,4 @@ namespace KNTy.MVP.Editor
         }
     }
 }
+#endif

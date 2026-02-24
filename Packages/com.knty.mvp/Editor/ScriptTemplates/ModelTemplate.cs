@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 namespace KNTy.MVP.Editor
 {
     internal static class ModelTemplate
@@ -16,3 +18,4 @@ public class {name}Model : ModelBase<{name}RuntimeModel>
 }}";
     }
 }
+#endif

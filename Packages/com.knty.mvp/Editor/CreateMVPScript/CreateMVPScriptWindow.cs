@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 
 namespace KNTy.MVP.Editor
@@ -38,7 +39,12 @@ namespace KNTy.MVP.Editor
                     ViewAndPresenterWindow();
                     break;
             }
-            if (_isFinished) Close();
+            if (_isFinished)
+            {
+                AssetDatabase.Refresh();
+                Close();
+            }
         }
     }
 }
+#endif

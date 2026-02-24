@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 namespace KNTy.MVP.Editor
 {
     internal static class PresenterTemplate
@@ -49,3 +51,4 @@ $@"public partial class {className}Presenter
 }}";
     }
 }
+#endif
