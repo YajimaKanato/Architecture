@@ -65,34 +65,12 @@ namespace KNTy.MVP.Editor
             CreateScript(runtimeModelPath, $"{className}RuntimeModel.cs", RuntimeModelTemplate.RuntimeModel(className));
         }
 
-        internal static void CreatePresenterCore(string className, string argument, string variable, string assignment)
+        internal static void CreatePresenter(string className)
         {
             var root = EnsureMVPRootFolder();
-            root = EnsureFolder(root, "Presenter");
-            var path = EnsureFolder(root, $"{className}Presenter");
-            className = className.Replace("Presenter", "");
+            var path = EnsureFolder(root, "Presenter");
 
-            CreateScript(path, $"{className}PresenterCore.cs", PresenterTemplate.PresenterCore(className, argument, variable, assignment));
-        }
-
-        internal static void CreatePresenterLifeCycle(string className)
-        {
-            var root = EnsureMVPRootFolder();
-            root = EnsureFolder(root, "Presenter");
-            var path = EnsureFolder(root, $"{className}Presenter");
-
-            CreateScript(path, $"{className}PresenterLifeCycle.cs", PresenterTemplate.PresenterLifeCycle(className));
-        }
-
-        internal static void CreatePartialPresenter(string className, string modelName)
-        {
-            var root = EnsureMVPRootFolder();
-            root = EnsureFolder(root, "Presenter");
-            var path = EnsureFolder(root, $"{className}Presenter");
-            className = className.Replace("Presenter", "");
-            modelName = modelName.Replace("RuntimeModel", "");
-
-            CreateScript(path, $"{className}Presenter_{modelName}.cs", PresenterTemplate.PartialPresenter(className, modelName));
+            CreateScript(path, $"{className}Presenter.cs", PresenterTemplate.Presenter(className));
         }
 
         internal static void CreateView(string className)
@@ -101,6 +79,14 @@ namespace KNTy.MVP.Editor
             var path = EnsureFolder(root, "View");
 
             CreateScript(path, $"{className}View.cs", ViewTemplate.View(className));
+        }
+
+        internal static void CreateInput(string className, string presenterName)
+        {
+            var root = EnsureMVPRootFolder();
+            var path = EnsureFolder(root, "Input");
+
+            CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className, presenterName));
         }
     }
 }

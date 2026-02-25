@@ -6,8 +6,10 @@ namespace KNTy.MVP.Runtime
     {
         [SerializeField] string _id;
         protected StateMachine _stateMachine = new();
-        protected IState[] _stateArray;
+        protected IState[] _stateCache;
+        protected IEventHub _eventHub;
         public virtual string DebugLabel => GetType().Name;
         public abstract void Initialize();
+        public abstract void InitializeState(IEventHub eventHub);
     }
 }

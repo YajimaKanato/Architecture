@@ -4,11 +4,11 @@ namespace KNTy.MVP.Editor
 {
     internal static class ViewTemplate
     {
-        public static string View(string name) =>
+        internal static string View(string name) =>
 $@"using KNTy.MVP.Runtime;
 using UnityEngine;
 
-public class {name}View : ViewBase<{name}Presenter>
+public class {name}View : ViewBase
 {{
     private void Start()
     {{
@@ -22,7 +22,12 @@ public class {name}View : ViewBase<{name}Presenter>
 
     public override void Initialize()
     {{
+        throw new System.NotImplementedException();
+    }}
 
+    public override void InitializeState(IEventHub eventHub)
+    {{
+        throw new System.NotImplementedException();
     }}
 }}";
     }

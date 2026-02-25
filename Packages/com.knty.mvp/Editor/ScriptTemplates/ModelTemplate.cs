@@ -4,7 +4,7 @@ namespace KNTy.MVP.Editor
 {
     internal static class ModelTemplate
     {
-        public static string Model(string name) =>
+        internal static string Model(string name) =>
 $@"using KNTy.MVP.Runtime;
 using UnityEngine;
 

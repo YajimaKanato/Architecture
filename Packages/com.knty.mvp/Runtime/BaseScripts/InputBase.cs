@@ -8,4 +8,10 @@ namespace KNTy.MVP.Runtime
         public virtual string DebugLabel => GetType().Name;
         public abstract void Initialize();
     }
+
+    public abstract class InputBase<TPresenter> : InputBase where TPresenter : PresenterBase
+    {
+        protected TPresenter _presenter;
+        public void SetPresenter(TPresenter presenter) => _presenter = presenter;
+    }
 }

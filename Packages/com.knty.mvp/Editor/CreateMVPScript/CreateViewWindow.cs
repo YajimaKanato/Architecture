@@ -53,8 +53,6 @@ namespace KNTy.MVP.Editor
                 if (_isFinished)
                 {
                     CreateMVPScript.CreateView(_viewName);
-                    CreateMVPScript.CreatePresenterCore(_viewName, "", "", "");
-                    CreateMVPScript.CreatePresenterLifeCycle(_viewName);
                 }
             }
         }

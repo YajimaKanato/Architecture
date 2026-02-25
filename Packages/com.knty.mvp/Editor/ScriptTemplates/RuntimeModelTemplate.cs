@@ -4,7 +4,7 @@ namespace KNTy.MVP.Editor
 {
     internal static class RuntimeModelTemplate
     {
-        public static string RuntimeModel(string name) =>
+        internal static string RuntimeModel(string name) =>
 $@"using KNTy.MVP.Runtime;
 
 public class {name}RuntimeModel : RuntimeModelBase

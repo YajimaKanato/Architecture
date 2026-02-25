@@ -9,18 +9,13 @@ namespace KNTy.MVP.Editor
         {
             None,
             Models,
-            PresenterCore,
-            PartialPresenter,
-            ViewAndPresenter
+            Presenter,
+            ViewAndPresenter,
+            Input
         }
 
         CreateMenu _createMenu = CreateMenu.None;
         bool _isFinished = false;
-
-        private void OnEnable()
-        {
-            PresenterCoreWindowSetup();
-        }
 
         private void OnGUI()
         {
@@ -29,14 +24,14 @@ namespace KNTy.MVP.Editor
                 case CreateMenu.Models:
                     ModelWindow();
                     break;
-                case CreateMenu.PresenterCore:
-                    PresenterCoreWindow();
-                    break;
-                case CreateMenu.PartialPresenter:
-                    PartialPresenterWindow();
+                case CreateMenu.Presenter:
+                    PresenterWindow();
                     break;
                 case CreateMenu.ViewAndPresenter:
                     ViewAndPresenterWindow();
+                    break;
+                case CreateMenu.Input:
+                    InputWindow();
                     break;
             }
             if (_isFinished)
