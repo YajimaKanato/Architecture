@@ -4,12 +4,12 @@ namespace KNTy.MVP.Runtime
 {
     public abstract class ModelBase : ScriptableObject
     {
-        public abstract IRuntimeModel CreateRuntimeModel();
+        public abstract RuntimeModelBase CreateRuntimeModel();
     }
 
-    public abstract class ModelBase<TRuntimeModel> : ModelBase where TRuntimeModel : IRuntimeModel
+    public abstract class ModelBase<TRuntimeModel> : ModelBase where TRuntimeModel : RuntimeModelBase
     {
-        public sealed override IRuntimeModel CreateRuntimeModel()
+        public sealed override RuntimeModelBase CreateRuntimeModel()
         {
             return CreateTypedRuntimeModel();
         }

@@ -8,33 +8,33 @@ namespace KNTy.MVP.Editor
     {
         string _viewName;
 
-        [MenuItem("MVP/Create/Script/View && PresenterCore")]
-        [MenuItem("Assets/Create/MVP/View && PresenterCore")]
-        static void OpenCreateViewAndPresenterFromMenu()
+        [MenuItem("MVP/Create/Script/View")]
+        [MenuItem("Assets/Create/MVP/View")]
+        static void OpenCreateViewFromMenu()
         {
-            OpenCreateViewAndPresenter();
+            OpenCreateView();
             if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreateViewAndPresenterFromMenu", true);
+                SessionState.SetBool("OpenCreateViewFromMenu", true);
         }
 
         [InitializeOnLoadMethod]
-        static void ResumeCreatingViewAndPresenter()
+        static void ResumeCreatingView()
         {
-            if (!SessionState.GetBool("OpenCreateViewAndPresenterFromMenu", false)) return;
-            SessionState.EraseBool("OpenCreateViewAndPresenterFromMenu");
-            OpenCreateViewAndPresenter();
+            if (!SessionState.GetBool("OpenCreateViewFromMenu", false)) return;
+            SessionState.EraseBool("OpenCreateViewFromMenu");
+            OpenCreateView();
         }
 
-        static void OpenCreateViewAndPresenter()
+        static void OpenCreateView()
         {
-            var window = GetWindow<CreateMVPScriptWindow>("Create View & Presenter");
+            var window = GetWindow<CreateMVPScriptWindow>("Create View");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._viewName = "New";
-            window._createMenu = CreateMenu.ViewAndPresenter;
+            window._createMenu = CreateMenu.View;
         }
 
-        void ViewAndPresenterWindow()
+        void ViewWindow()
         {
             GUILayout.Label("Create", EditorStyles.boldLabel);
             _viewName = EditorGUILayout.TextField("ScriptName", _viewName);

@@ -10,8 +10,9 @@ namespace KNTy.MVP.Editor
             None,
             Models,
             Presenter,
-            ViewAndPresenter,
-            Input
+            View,
+            Input,
+            EventHub
         }
 
         CreateMenu _createMenu = CreateMenu.None;
@@ -27,11 +28,14 @@ namespace KNTy.MVP.Editor
                 case CreateMenu.Presenter:
                     PresenterWindow();
                     break;
-                case CreateMenu.ViewAndPresenter:
-                    ViewAndPresenterWindow();
+                case CreateMenu.View:
+                    ViewWindow();
                     break;
                 case CreateMenu.Input:
                     InputWindow();
+                    break;
+                case CreateMenu.EventHub:
+                    EventHubWindow();
                     break;
             }
             if (_isFinished)

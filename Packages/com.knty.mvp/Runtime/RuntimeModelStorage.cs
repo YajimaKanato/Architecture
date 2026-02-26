@@ -7,7 +7,7 @@ namespace KNTy.MVP.Runtime
     {
         readonly Dictionary<Type, IRuntimeModelVault> _storage = new();
 
-        bool GetOrCreateRuntimeModelVault<TRuntimeModel>(out RuntimeModelVault<TRuntimeModel> vault) where TRuntimeModel : IRuntimeModel
+        bool GetOrCreateRuntimeModelVault<TRuntimeModel>(out RuntimeModelVault<TRuntimeModel> vault) where TRuntimeModel : RuntimeModelBase
         {
             var type = typeof(TRuntimeModel);
             if (!(_storage.TryGetValue(type, out var v) && v is RuntimeModelVault<TRuntimeModel>))
@@ -17,20 +17,20 @@ namespace KNTy.MVP.Runtime
             return vault != null;
         }
 
-        bool GetRuntimeModelVault<TRuntimeModel>(out RuntimeModelVault<TRuntimeModel> vault) where TRuntimeModel : IRuntimeModel
+        bool GetRuntimeModelVault<TRuntimeModel>(out RuntimeModelVault<TRuntimeModel> vault) where TRuntimeModel : RuntimeModelBase
         {
             _storage.TryGetValue(typeof(TRuntimeModel), out var v);
             vault = v as RuntimeModelVault<TRuntimeModel>;
             return vault != null;
         }
 
-        public bool TryRegister<TRuntimeModel>(int id, TRuntimeModel runtimeModel) where TRuntimeModel : IRuntimeModel
+        public bool TryRegister<TRuntimeModel>(int id, TRuntimeModel runtimeModel) where TRuntimeModel : RuntimeModelBase
         {
             if (!GetOrCreateRuntimeModelVault<TRuntimeModel>(out var vault)) return false;
             return vault.TryRegister(id, runtimeModel);
         }
 
-        public bool TryGetRuntimeModel<TRuntimeModel>(int id, out TRuntimeModel runtimeModel) where TRuntimeModel : IRuntimeModel
+        public bool TryGetRuntimeModel<TRuntimeModel>(int id, out TRuntimeModel runtimeModel) where TRuntimeModel : RuntimeModelBase
         {
             if (!(GetRuntimeModelVault<TRuntimeModel>(out var vault) && vault.TryGetRuntimeModel(id, out var rm)))
             {
@@ -44,7 +44,7 @@ namespace KNTy.MVP.Runtime
             }
         }
 
-        public bool TryUnregister<TRuntimeModel>(int id) where TRuntimeModel : IRuntimeModel
+        public bool TryUnregister<TRuntimeModel>(int id) where TRuntimeModel : RuntimeModelBase
         {
             return GetRuntimeModelVault<TRuntimeModel>(out var vault) && vault.TryUnregister(id);
         }

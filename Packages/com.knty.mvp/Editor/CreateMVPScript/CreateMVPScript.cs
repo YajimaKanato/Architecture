@@ -88,6 +88,14 @@ namespace KNTy.MVP.Editor
 
             CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className, presenterName));
         }
+
+        internal static void CreateEventHub(string className)
+        {
+            var root = EnsureMVPRootFolder();
+            var path = EnsureFolder(root, "EventHub");
+
+            CreateScript(path, $"{className}EventHub.cs", EventHubTemplate.EventHub(className));
+        }
     }
 }
 #endif

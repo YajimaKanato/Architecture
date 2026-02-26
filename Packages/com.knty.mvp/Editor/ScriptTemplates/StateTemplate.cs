@@ -1,23 +1,22 @@
-using UnityEngine;
-
+#if UNITY_EDITOR
 namespace KNTy.MVP.Editor
 {
     internal static class StateTemplate
     {
-        internal static string State(string name) =>
+        internal static string State(string className, string viewName) =>
 $@"using System;
 
-public class DemoState : IState<DemoView>
+public class {className}State : IState<{viewName}View>
 {{
-    readonly DemoView _view;
+    readonly {viewName}View _view;
     IDisposable _subscripotion;
 
-    public DemoState(DemoView view)
+    public {className}State({viewName}View view)
     {{
         _view = view;
     }}
 
-    public bool CanExit(IState<ViewBase> newState)
+    public bool CanExit(IState<{viewName}View> newState)
     {{
         throw new System.NotImplementedException();
     }}
@@ -39,3 +38,4 @@ public class DemoState : IState<DemoView>
 }}";
     }
 }
+#endif

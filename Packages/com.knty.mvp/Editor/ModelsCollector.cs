@@ -46,7 +46,7 @@ namespace KNTy.MVP.Editor
                 var type = mono?.GetClass();
                 if (type == null) continue;
 
-                if (typeof(IRuntimeModel).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
+                if (typeof(RuntimeModelBase).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
                 {
                     _runtimeModelNames.Add(type.Name);
                 }

@@ -30,6 +30,7 @@ namespace KNTy.MVP.Editor
             var window = GetWindow<CreateMVPScriptWindow>("Create Presenter");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
+            window._presenterName = "New";
             window._createMenu = CreateMenu.Presenter;
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace KNTy.MVP.Runtime
 {
-    internal sealed class RuntimeModelVault<TRuntimeModel> : IRuntimeModelVault where TRuntimeModel : IRuntimeModel
+    internal sealed class RuntimeModelVault<TRuntimeModel> : IRuntimeModelVault where TRuntimeModel : RuntimeModelBase
     {
         readonly Dictionary<int, TRuntimeModel> _vault = new();
 
