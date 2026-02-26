@@ -1,10 +1,10 @@
 namespace KNTy.MVP.Runtime
 {
-    public sealed class StateMachine
+    public sealed class StateMachine<TView> where TView : ViewBase
     {
-        IState _currentState;
+        IState<TView> _currentState;
 
-        public void ChangeState(IState newState)
+        public void ChangeState(IState<TView> newState)
         {
             if (_currentState != null && !_currentState.CanExit(newState)) return;
             _currentState?.Exit();

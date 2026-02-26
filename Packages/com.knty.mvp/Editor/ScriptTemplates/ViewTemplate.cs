@@ -10,6 +10,9 @@ using UnityEngine;
 
 public class {name}View : ViewBase
 {{
+    StateMachine<{name}View> _stateMachine = new();
+    IState<{name}View>[] _stateCache;
+
     private void Start()
     {{
         

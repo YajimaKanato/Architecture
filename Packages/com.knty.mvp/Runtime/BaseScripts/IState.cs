@@ -1,8 +1,8 @@
 namespace KNTy.MVP.Runtime
 {
-    public interface IState
+    public interface IState<TView> where TView : ViewBase
     {
-        bool CanExit(IState newState);
+        bool CanExit(IState<TView> newState);
         void Enter();
         void Execute();
         void Exit();
