@@ -23,12 +23,7 @@ public class {name}View : ViewBase
         
     }}
 
-    public override void Initialize()
-    {{
-        throw new System.NotImplementedException();
-    }}
-
-    public override void InitializeState(IEventHub eventHub)
+    public override void Initialize(ViewModelStorage storage, IEventHub eventHub)
     {{
         throw new System.NotImplementedException();
     }}

@@ -4,7 +4,8 @@ namespace KNTy.MVP.Editor
     internal static class StateTemplate
     {
         internal static string State(string className, string viewName) =>
-$@"using System;
+$@"using KNTy.MVP.Runtime;
+using System;
 
 public class {className}State : IState<{viewName}View>
 {{

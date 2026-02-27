@@ -4,17 +4,12 @@ namespace KNTy.MVP.Editor
 {
     internal static class InputTemplate
     {
-        internal static string Input(string className, string presenterName) =>
+        internal static string Input(string className) =>
 $@"using KNTy.MVP.Runtime;
 using UnityEngine;
 
-public class {className}Input : InputBase<{presenterName}Presenter>
+public class {className}Input : InputBase
 {{
-    public override void Initialize()
-    {{
-        throw new System.NotImplementedException();
-    }}
-
     private void Start()
     {{
             

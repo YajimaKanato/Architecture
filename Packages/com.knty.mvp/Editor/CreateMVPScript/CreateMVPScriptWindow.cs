@@ -12,7 +12,8 @@ namespace KNTy.MVP.Editor
             Presenter,
             View,
             Input,
-            EventHub
+            EventHub,
+            State
         }
 
         CreateMenu _createMenu = CreateMenu.None;
@@ -36,6 +37,9 @@ namespace KNTy.MVP.Editor
                     break;
                 case CreateMenu.EventHub:
                     EventHubWindow();
+                    break;
+                case CreateMenu.State:
+                    StateWindow();
                     break;
             }
             if (_isFinished)

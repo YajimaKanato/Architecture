@@ -8,24 +8,24 @@ namespace KNTy.MVP.Editor
     {
         string _modelName;
 
-        [MenuItem("MVP/Create/Script/Model && RuntimeModel")]
-        [MenuItem("Assets/Create/MVP/Model && RuntimeModel")]
-        static void OpenCreateModelFromMenu()
+        [MenuItem("MVP/Create/Script/Models")]
+        [MenuItem("Assets/Create/MVP/Models")]
+        static void OpenCreateModelsFromMenu()
         {
-            OpenCreateModel();
+            OpenCreateModels();
             if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreateModelFromMenu", true);
+                SessionState.SetBool("OpenCreateModelsFromMenu", true);
         }
 
         [InitializeOnLoadMethod]
-        static void ResumeCreatingModel()
+        static void ResumeCreatingModels()
         {
-            if (!SessionState.GetBool("OpenCreateModelFromMenu", false)) return;
-            SessionState.EraseBool("OpenCreateModelFromMenu");
-            OpenCreateModel();
+            if (!SessionState.GetBool("OpenCreateModelsFromMenu", false)) return;
+            SessionState.EraseBool("OpenCreateModelsFromMenu");
+            OpenCreateModels();
         }
 
-        static void OpenCreateModel()
+        static void OpenCreateModels()
         {
             var window = GetWindow<CreateMVPScriptWindow>("Create Models");
             Vector2 windowSize = new Vector2(350, 100);

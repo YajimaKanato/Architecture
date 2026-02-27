@@ -11,10 +11,12 @@ namespace KNTy.MVP.Editor
         {
             new NamingRule(RuleType.GenericClass, "ModelBase", "Model"),
             new NamingRule(RuleType.BaseClass, "RuntimeModelBase", "RuntimeModel"),
+            new NamingRule(RuleType.Interface,"IViewModel","ViewModel"),
             new NamingRule(RuleType.BaseClass, "ViewBase", "View"),
             new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),
             new NamingRule(RuleType.BaseClass,"InputBase","Input"),
-            new NamingRule(RuleType.Interface,"IEventHub","EventHub")
+            new NamingRule(RuleType.Interface,"IEventHub","Hub"),
+            new NamingRule(RuleType.GenericClass,"IState","State")
         };
 
         [MenuItem("MVP/Validation/Script Naming Validation")]

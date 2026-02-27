@@ -21,9 +21,9 @@ namespace KNTy.MVP.Editor
                 ScriptNameValidator.NameValidate(path);
             }
 
-            ScriptCollection.CollectModels();
-            ScriptCollection.CollectRuntimeModels();
-            ScriptCollection.CollectPresenter();
+            //ScriptCollection.CollectModels();
+            //ScriptCollection.CollectRuntimeModels();
+            //ScriptCollection.CollectPresenter();
             ScriptCollection.CollectView();
         }
     }

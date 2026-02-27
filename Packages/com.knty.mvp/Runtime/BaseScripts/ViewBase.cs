@@ -7,6 +7,6 @@ namespace KNTy.MVP.Runtime
         [SerializeField] string _id;
         protected IEventHub _eventHub;
         public IEventHub EventHub => _eventHub;
-        public abstract void InitializeState(IEventHub eventHub);
+        public abstract void Initialize(ViewModelStorage storage, IEventHub eventHub);
     }
 }

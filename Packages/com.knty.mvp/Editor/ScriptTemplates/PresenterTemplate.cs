@@ -8,25 +8,22 @@ namespace KNTy.MVP.Editor
 $@"using KNTy.MVP.Runtime;
 using System;
 
-public class DemoPresenter : PresenterBase
+public class {name}Presenter : PresenterBase
 {{
-    public DemoPresenter(IEventHub eventHub) : base(eventHub)
+    public {name}Presenter(RuntimeModelStorage storage_RM, ViewModelStorage storage_VM, IEventHub inputHub, IEventHub eventHub) : 
+        base(storage_RM, storage_VM, inputHub, eventHub)
     {{
 
     }}
 
     public override void Dispose()
     {{
-        {{
-            throw new NotImplementedException();
-        }}
+        throw new NotImplementedException();
     }}
 
-    public override void Initialize()
+    protected override void SubscribeInputHub()
     {{
-        {{
-            throw new NotImplementedException();
-        }}
+        throw new NotImplementedException();
     }}
 }}";
     }

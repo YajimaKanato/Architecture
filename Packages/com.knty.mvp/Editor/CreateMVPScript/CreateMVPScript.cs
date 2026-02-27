@@ -58,11 +58,14 @@ namespace KNTy.MVP.Editor
         internal static void CreateModels(string className)
         {
             var root = EnsureMVPRootFolder();
+            root = EnsureFolder(root, "Models");
             var modelPath = EnsureFolder(root, "Model");
             var runtimeModelPath = EnsureFolder(root, "RuntimeModel");
+            var viewModelPath = EnsureFolder(root, "ViewModel");
 
             CreateScript(modelPath, $"{className}Model.cs", ModelTemplate.Model(className));
             CreateScript(runtimeModelPath, $"{className}RuntimeModel.cs", RuntimeModelTemplate.RuntimeModel(className));
+            CreateScript(viewModelPath, $"{className}ViewModel.cs", ViewModelTemplate.ViewModel(className));
         }
 
         internal static void CreatePresenter(string className)
@@ -81,12 +84,12 @@ namespace KNTy.MVP.Editor
             CreateScript(path, $"{className}View.cs", ViewTemplate.View(className));
         }
 
-        internal static void CreateInput(string className, string presenterName)
+        internal static void CreateInput(string className)
         {
             var root = EnsureMVPRootFolder();
             var path = EnsureFolder(root, "Input");
 
-            CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className, presenterName));
+            CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className));
         }
 
         internal static void CreateEventHub(string className)
@@ -95,6 +98,15 @@ namespace KNTy.MVP.Editor
             var path = EnsureFolder(root, "EventHub");
 
             CreateScript(path, $"{className}EventHub.cs", EventHubTemplate.EventHub(className));
+        }
+
+        internal static void CreateState(string className, string viewName)
+        {
+            var root = EnsureMVPRootFolder();
+            root = EnsureFolder(root, "State");
+            var path = EnsureFolder(root, $"{viewName}View");
+
+            CreateScript(path, $"{className}State.cs", StateTemplate.State(className, viewName));
         }
     }
 }
