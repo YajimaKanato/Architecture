@@ -20,7 +20,7 @@ public class {name}View : ViewBase
 
     private void Update()
     {{
-        
+        _stateMachine.Update();
     }}
 
     public override void Initialize(ViewModelStorage storage, IEventHub eventHub)

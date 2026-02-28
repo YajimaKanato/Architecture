@@ -49,7 +49,7 @@ namespace KNTy.MVP.Editor
                     _isFinished = true;
                     e.Use();
                 }
-                if (_isFinished) CreateMVPScript.CreateEventHub(_viewName);
+                if (_isFinished) CreateMVPScript.CreateEventHub(_eventHubName);
             }
         }
     }

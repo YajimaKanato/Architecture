@@ -4,7 +4,7 @@ namespace KNTy.MVP.Runtime
 {
     public abstract class InputBase : MonoBehaviour
     {
-        [SerializeField] string _id;
+        [SerializeField] protected string _id;
         protected IEventHub _inputHub;
         public void SetEventHub(IEventHub inputHub) => _inputHub = inputHub;
     }

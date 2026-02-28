@@ -10,11 +10,13 @@ using System;
 public class {className}State : IState<{viewName}View>
 {{
     readonly {viewName}View _view;
+    readonly ViewModelStorage _storage;
     IDisposable _subscripotion;
 
-    public {className}State({viewName}View view)
+    public {className}State({viewName}View view, ViewModelStorage storage)
     {{
         _view = view;
+        _storage = storage;
     }}
 
     public bool CanExit(IState<{viewName}View> newState)

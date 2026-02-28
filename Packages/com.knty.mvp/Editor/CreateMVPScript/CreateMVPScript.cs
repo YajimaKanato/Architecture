@@ -97,7 +97,7 @@ namespace KNTy.MVP.Editor
             var root = EnsureMVPRootFolder();
             var path = EnsureFolder(root, "EventHub");
 
-            CreateScript(path, $"{className}EventHub.cs", EventHubTemplate.EventHub(className));
+            CreateScript(path, $"{className}Hub.cs", EventHubTemplate.EventHub(className));
         }
 
         internal static void CreateState(string className, string viewName)
