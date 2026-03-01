@@ -19,6 +19,12 @@ namespace KNTy.MVP.Runtime
             _runtimeModelStorage = new RuntimeModelStorage();
             _viewModelStorage = new ViewModelStorage();
 
+            var inputs = FindObjectsByType<InputBase>(FindObjectsSortMode.None);
+            foreach (var input in inputs)
+            {
+
+            }
+
             var views = FindObjectsByType<ViewBase>(FindObjectsSortMode.None);
             foreach (var view in views)
             {
