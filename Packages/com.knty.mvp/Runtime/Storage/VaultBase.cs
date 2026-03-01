@@ -7,12 +7,9 @@ namespace KNTy.MVP.Runtime
     {
         protected readonly Dictionary<int, T> _vault = new();
 
-        public bool TryRegister(int id, T runtimeModel)
-        {
-            return _vault.TryAdd(id, runtimeModel);
-        }
+        public abstract bool TryRegister(int id, T runtimeModel);
 
-        public bool TryGetRuntimeModel(int id, out T runtimeModel)
+        public bool TryGetModel(int id, out T runtimeModel)
         {
             return _vault.TryGetValue(id, out runtimeModel);
         }

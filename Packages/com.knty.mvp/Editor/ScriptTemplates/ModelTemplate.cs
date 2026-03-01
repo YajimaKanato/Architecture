@@ -8,12 +8,17 @@ namespace KNTy.MVP.Editor
 $@"using KNTy.MVP.Runtime;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = ""{name}Model"", menuName = ""Models/{name}Model"")]
-public class {name}Model : ModelBase<{name}RuntimeModel>
+[CreateAssetMenu(fileName = ""{name}Model"", menuName = ""MVP/ModelAsset/{name}Model"")]
+public class {name}Model : ModelBase<{name}RuntimeModel, {name}ViewModel>
 {{
     public override {name}RuntimeModel CreateTypedRuntimeModel()
     {{
         return new {name}RuntimeModel(this);
+    }}
+
+    public override {name}ViewModel CreateTypedViewModel()
+    {{
+        return new {name}ViewModel(this);
     }}
 }}";
     }

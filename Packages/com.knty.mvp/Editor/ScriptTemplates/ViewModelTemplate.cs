@@ -9,10 +9,10 @@ $@"using KNTy.MVP.Runtime;
 
 public readonly struct {className}ViewModel : IViewModel
 {{
-    //public {className}ViewModel()
-    //{{
+    public {className}ViewModel({className}Model model)
+    {{
 
-    //}}
+    }}
 }}";
     }
 }
