@@ -1,8 +1,13 @@
 using KNTy.MVP.Runtime;
 
-public readonly struct NewViewModel : IViewModel
+public class NewViewModel : ViewModelBase
 {
     public NewViewModel(NewModel model)
+    {
+
+    }
+
+    public override void Dispose()
     {
 
     }

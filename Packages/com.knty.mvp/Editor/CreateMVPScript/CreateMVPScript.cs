@@ -84,12 +84,12 @@ namespace KNTy.MVP.Editor
             CreateScript(path, $"{className}View.cs", ViewTemplate.View(className));
         }
 
-        internal static void CreateInput(string className)
+        internal static void CreateInput(string className, string runtimeModelName)
         {
             var root = EnsureMVPRootFolder();
             var path = EnsureFolder(root, "Input");
 
-            CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className));
+            CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className, runtimeModelName));
         }
 
         internal static void CreateEventHub(string className)
@@ -107,6 +107,14 @@ namespace KNTy.MVP.Editor
             var path = EnsureFolder(root, $"{viewName}View");
 
             CreateScript(path, $"{className}State.cs", StateTemplate.State(className, viewName));
+        }
+
+        internal static void CreatePresenterFactory(string className)
+        {
+            var root = EnsureMVPRootFolder();
+            var path = EnsureFolder(root, "PresenterFactory");
+
+            CreateScript(path, $"{className}PresenterFactory.cs", PresenterFactoryTemplate.PresenterFactory(className));
         }
     }
 }

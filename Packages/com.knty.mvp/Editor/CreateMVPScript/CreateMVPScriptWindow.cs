@@ -10,6 +10,7 @@ namespace KNTy.MVP.Editor
             None,
             Models,
             Presenter,
+            PresenterFactory,
             View,
             Input,
             EventHub,
@@ -28,6 +29,9 @@ namespace KNTy.MVP.Editor
                     break;
                 case CreateMenu.Presenter:
                     PresenterWindow();
+                    break;
+                case CreateMenu.PresenterFactory:
+                    PresenterFactoryWindow();
                     break;
                 case CreateMenu.View:
                     ViewWindow();

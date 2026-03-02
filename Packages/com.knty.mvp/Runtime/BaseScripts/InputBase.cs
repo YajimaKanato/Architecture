@@ -8,15 +8,12 @@ namespace KNTy.MVP.Runtime
         [SerializeField] protected ID _id;
         protected IEventHub _inputHub;
         public ID ID => _id;
-        public abstract Type RuntimeModelType();
-        public void SetEventHub(IEventHub inputHub) => _inputHub = inputHub;
+        public abstract Type ModelType();
+        public void SetInputHub(IEventHub inputHub) => _inputHub = inputHub;
     }
 
     public abstract class InputBase<TRuntimeModel> : InputBase where TRuntimeModel : RuntimeModelBase
     {
-        public override Type RuntimeModelType()
-        {
-            return typeof(TRuntimeModel);
-        }
+        public override Type ModelType() => typeof(TRuntimeModel);
     }
 }

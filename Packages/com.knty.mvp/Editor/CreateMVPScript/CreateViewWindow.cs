@@ -9,19 +9,9 @@ namespace KNTy.MVP.Editor
         string _viewName;
 
         [MenuItem("MVP/Create/Script/View")]
-        [MenuItem("Assets/Create/MVP/View")]
+        [MenuItem("Assets/Create/MVP/Script/View")]
         static void OpenCreateViewFromMenu()
         {
-            OpenCreateView();
-            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreateViewFromMenu", true);
-        }
-
-        [InitializeOnLoadMethod]
-        static void ResumeCreatingView()
-        {
-            if (!SessionState.GetBool("OpenCreateViewFromMenu", false)) return;
-            SessionState.EraseBool("OpenCreateViewFromMenu");
             OpenCreateView();
         }
 

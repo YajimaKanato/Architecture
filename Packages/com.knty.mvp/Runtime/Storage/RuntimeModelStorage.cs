@@ -5,60 +5,63 @@ namespace KNTy.MVP.Runtime
 {
     public sealed class RuntimeModelStorage : IDisposable
     {
-        readonly Dictionary<Type, IVault> _storage = new();
+        readonly Dictionary<Type, VaultBase<RuntimeModelBase>> _storage = new();
+        readonly Dictionary<Type, Func<RuntimeModelBase>> _modelGenerateDict = new();
 
-        public RuntimeModelStorage()
+        public RuntimeModelStorage(ModelCollection modelCollection)
         {
-
-        }
-
-        bool GetOrCreateVault<TRuntimeModel>(out RuntimeModelVault<TRuntimeModel> vault) where TRuntimeModel : RuntimeModelBase
-        {
-            var type = typeof(TRuntimeModel);
-            if (!_storage.TryGetValue(type, out var v))
+            var list = modelCollection.ModelList;
+            foreach (var model in list)
             {
-                v = new RuntimeModelVault<TRuntimeModel>();
-                _storage[type] = v;
+                _modelGenerateDict[model.GetRuntimeModelType()] = model.CreateRuntimeModel;
             }
+        }
 
-            vault = (RuntimeModelVault<TRuntimeModel>)v;
+        void GetOrCreateVault(Type type, out VaultBase<RuntimeModelBase> vault)
+        {
+            if (!_storage.TryGetValue(type, out vault))
+            {
+                vault = new VaultBase<RuntimeModelBase>();
+                _storage[type] = vault;
+            }
+        }
+
+        bool GetVault(Type type, out VaultBase<RuntimeModelBase> vault)
+        {
+            _storage.TryGetValue(type, out vault);
             return vault != null;
         }
 
-        bool GetVault<TRuntimeModel>(out RuntimeModelVault<TRuntimeModel> vault) where TRuntimeModel : RuntimeModelBase
+        public bool TryRegister(Type type, ID id)
         {
-            _storage.TryGetValue(typeof(TRuntimeModel), out var v);
-            vault = (RuntimeModelVault<TRuntimeModel>)v;
-            return vault != null;
-        }
-
-        public bool TryRegister<TRuntimeModel>(int id, TRuntimeModel runtimeModel) where TRuntimeModel : RuntimeModelBase
-        {
-            if (!GetOrCreateVault<TRuntimeModel>(out var vault)) return false;
+            if (!_modelGenerateDict.TryGetValue(type, out var func)) return false;
+            var runtimeModel = func();
+            GetOrCreateVault(type, out var vault);
             return vault.TryRegister(id, runtimeModel);
         }
 
-        public bool TryGetModel<TRuntimeModel>(int id, out TRuntimeModel runtimeModel) where TRuntimeModel : RuntimeModelBase
+        public bool TryGetModel(Type type, ID id, out RuntimeModelBase runtimeModel)
         {
-            if (GetVault<TRuntimeModel>(out var vault) && vault.TryGetModel(id, out runtimeModel))
+            if (GetVault(type, out var vault) && vault.TryGetModel(id, out runtimeModel))
                 return true;
 
             runtimeModel = default;
             return false;
         }
 
-        public bool TryUnregister<TRuntimeModel>(int id) where TRuntimeModel : RuntimeModelBase
+        public bool TryUnregister(Type type, ID id)
         {
-            return GetVault<TRuntimeModel>(out var vault) && vault.TryUnregister(id);
+            return GetVault(type, out var vault) && vault.TryUnregister(id);
         }
 
         public void Dispose()
         {
             foreach (var v in _storage.Values)
             {
-                (v as IDisposable)?.Dispose();
+                v.Dispose();
             }
             _storage.Clear();
+            _modelGenerateDict.Clear();
         }
     }
 }

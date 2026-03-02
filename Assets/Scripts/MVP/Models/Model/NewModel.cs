@@ -19,7 +19,7 @@ public class NewModel : ModelBase<NewRuntimeModel, NewViewModel>
 #if UNITY_EDITOR
 
     [MenuItem("Assets/Create/MVP/Asset/Models/NewModel")]
-    static void CreateNewModel()
+    static void CreateModel()
     {
         ModelAssetCreator.CreateModelAsset<NewModel>();
     }

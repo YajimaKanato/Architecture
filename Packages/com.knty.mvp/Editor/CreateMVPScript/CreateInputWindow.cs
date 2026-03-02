@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,21 +8,20 @@ namespace KNTy.MVP.Editor
     internal partial class CreateMVPScriptWindow
     {
         string _inputName;
+        string[] _runtimeModels;
+        int _runtimeModelIndex;
 
-        [MenuItem("MVP/Create/Script/Input")]
-        [MenuItem("Assets/Create/MVP/Input")]
-        static void OpenCreateInputFromMenu()
+        [MenuItem("MVP/Create/Script/Input", true)]
+        [MenuItem("Assets/Create/MVP/Script/Input", true)]
+        static bool ValidateOpenCreateInput()
         {
-            OpenCreateInput();
-            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreateInputFromMenu", true);
+            return ScriptCollection.RuntimeModelNames.Count > 0;
         }
 
-        [InitializeOnLoadMethod]
-        static void ResumeCreatingInput()
+        [MenuItem("MVP/Create/Script/Input")]
+        [MenuItem("Assets/Create/MVP/Script/Input")]
+        static void OpenCreateInputFromMenu()
         {
-            if (!SessionState.GetBool("OpenCreateInputFromMenu", false)) return;
-            SessionState.EraseBool("OpenCreateInputFromMenu");
             OpenCreateInput();
         }
 
@@ -31,6 +31,8 @@ namespace KNTy.MVP.Editor
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._inputName = "New";
+            window._runtimeModels = ScriptCollection.RuntimeModelNames.ToArray();
+            window._runtimeModelIndex = 0;
             window._createMenu = CreateMenu.Input;
         }
 
@@ -38,6 +40,7 @@ namespace KNTy.MVP.Editor
         {
             GUILayout.Label("Input", EditorStyles.boldLabel);
             _inputName = EditorGUILayout.TextField("ScriptName", _inputName);
+            _runtimeModelIndex = EditorGUILayout.Popup("RuntimeModel Type", _runtimeModelIndex, _runtimeModels);
 
             using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_inputName)))
             {
@@ -49,7 +52,11 @@ namespace KNTy.MVP.Editor
                     _isFinished = true;
                     e.Use();
                 }
-                if (_isFinished) CreateMVPScript.CreateInput(_inputName);
+                if (_isFinished)
+                {
+                    var runtimeModelName = _runtimeModels[_runtimeModelIndex].Replace("RuntimeModel", "");
+                    CreateMVPScript.CreateInput(_inputName, runtimeModelName);
+                }
             }
         }
     }

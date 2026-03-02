@@ -5,60 +5,63 @@ namespace KNTy.MVP.Runtime
 {
     public sealed class ViewModelStorage : IDisposable
     {
-        readonly Dictionary<Type, IVault> _storage = new();
+        readonly Dictionary<Type, VaultBase<ViewModelBase>> _storage = new();
+        readonly Dictionary<Type, Func<ViewModelBase>> _modelGenerateDict = new();
 
-        public ViewModelStorage()
+        public ViewModelStorage(ModelCollection modelCollection)
         {
-
-        }
-
-        bool GetOrCreateVault<TViewModel>(out ViewModelVault<TViewModel> vault) where TViewModel : struct, IViewModel
-        {
-            var type = typeof(TViewModel);
-            if (!_storage.TryGetValue(type, out var v))
+            var list = modelCollection.ModelList;
+            foreach (var model in list)
             {
-                v = new ViewModelVault<TViewModel>();
-                _storage[type] = v;
+                _modelGenerateDict[model.GetRuntimeModelType()] = model.CreateViewModel;
             }
+        }
 
-            vault = (ViewModelVault<TViewModel>)v;
+        void GetOrCreateVault(Type type, out VaultBase<ViewModelBase> vault)
+        {
+            if (!_storage.TryGetValue(type, out vault))
+            {
+                vault = new VaultBase<ViewModelBase>();
+                _storage[type] = vault;
+            }
+        }
+
+        bool GetVault(Type type, out VaultBase<ViewModelBase> vault)
+        {
+            _storage.TryGetValue(type, out vault);
             return vault != null;
         }
 
-        bool GetVault<TViewModel>(out ViewModelVault<TViewModel> vault) where TViewModel : struct, IViewModel
+        public bool TryRegister(Type type, ID id)
         {
-            _storage.TryGetValue(typeof(TViewModel), out var v);
-            vault = (ViewModelVault<TViewModel>)v;
-            return vault != null;
+            if (!_modelGenerateDict.TryGetValue(type, out var func)) return false;
+            var viewModel = func();
+            GetOrCreateVault(type, out var vault);
+            return vault.TryRegister(id, viewModel);
         }
 
-        public bool TryRegister<TViewModel>(int id, TViewModel runtimeModel) where TViewModel : struct, IViewModel
+        public bool TryGetModel(Type type, ID id, out ViewModelBase viewModel)
         {
-            if (!GetOrCreateVault<TViewModel>(out var vault)) return false;
-            return vault.TryRegister(id, runtimeModel);
-        }
-
-        public bool TryGetModel<TViewModel>(int id, out TViewModel runtimeModel) where TViewModel : struct, IViewModel
-        {
-            if (GetVault<TViewModel>(out var vault) && vault.TryGetModel(id, out runtimeModel))
+            if (GetVault(type, out var vault) && vault.TryGetModel(id, out viewModel))
                 return true;
 
-            runtimeModel = default;
+            viewModel = default;
             return false;
         }
 
-        public bool TryUnregister<TViewModel>(int id) where TViewModel : struct, IViewModel
+        public bool TryUnregister(Type type, ID id)
         {
-            return GetVault<TViewModel>(out var vault) && vault.TryUnregister(id);
+            return GetVault(type, out var vault) && vault.TryUnregister(id);
         }
 
         public void Dispose()
         {
             foreach (var v in _storage.Values)
             {
-                (v as IDisposable)?.Dispose();
+                v.Dispose();
             }
             _storage.Clear();
+            _modelGenerateDict.Clear();
         }
     }
 }

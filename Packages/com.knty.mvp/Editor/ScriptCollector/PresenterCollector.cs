@@ -11,7 +11,7 @@ namespace KNTy.MVP.Editor
 
         internal static IReadOnlyList<string> PresenterNames => _presenterNames;
 
-        [InitializeOnLoadMethod]
+        //[InitializeOnLoadMethod]
         internal static void CollectPresenter()
         {
             _presenterNames.Clear();

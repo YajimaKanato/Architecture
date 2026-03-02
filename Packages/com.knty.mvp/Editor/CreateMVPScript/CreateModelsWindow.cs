@@ -9,19 +9,9 @@ namespace KNTy.MVP.Editor
         string _modelName;
 
         [MenuItem("MVP/Create/Script/Models")]
-        [MenuItem("Assets/Create/MVP/Models")]
+        [MenuItem("Assets/Create/MVP/Script/Models")]
         static void OpenCreateModelsFromMenu()
         {
-            OpenCreateModels();
-            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreateModelsFromMenu", true);
-        }
-
-        [InitializeOnLoadMethod]
-        static void ResumeCreatingModels()
-        {
-            if (!SessionState.GetBool("OpenCreateModelsFromMenu", false)) return;
-            SessionState.EraseBool("OpenCreateModelsFromMenu");
             OpenCreateModels();
         }
 

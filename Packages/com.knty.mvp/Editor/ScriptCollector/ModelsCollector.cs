@@ -13,11 +13,11 @@ namespace KNTy.MVP.Editor
         internal static IReadOnlyList<string> ModelNames => _modelNames;
         internal static IReadOnlyList<string> RuntimeModelNames => _runtimeModelNames;
 
-        [InitializeOnLoadMethod]
+        //[InitializeOnLoadMethod]
         internal static void CollectModels()
         {
             _modelNames.Clear();
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/MVP/Model" });
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/MVP/Models/Model" });
 
             foreach (var guid in guids)
             {
@@ -37,7 +37,7 @@ namespace KNTy.MVP.Editor
         internal static void CollectRuntimeModels()
         {
             _runtimeModelNames.Clear();
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/MVP/RuntimeModel" });
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/MVP/Models/RuntimeModel" });
 
             foreach (var guid in guids)
             {

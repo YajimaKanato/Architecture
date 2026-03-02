@@ -7,9 +7,14 @@ namespace KNTy.MVP.Editor
         internal static string ViewModel(string className) =>
 $@"using KNTy.MVP.Runtime;
 
-public readonly struct {className}ViewModel : IViewModel
+public class {className}ViewModel : ViewModelBase
 {{
     public {className}ViewModel({className}Model model)
+    {{
+
+    }}
+
+    public override void Dispose()
     {{
 
     }}

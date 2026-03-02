@@ -22,7 +22,7 @@ namespace KNTy.MVP.Editor
             }
 
             //ScriptCollection.CollectModels();
-            //ScriptCollection.CollectRuntimeModels();
+            ScriptCollection.CollectRuntimeModels();
             //ScriptCollection.CollectPresenter();
             ScriptCollection.CollectView();
         }

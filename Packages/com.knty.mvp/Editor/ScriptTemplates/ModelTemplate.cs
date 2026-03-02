@@ -11,7 +11,6 @@ using UnityEditor;
 using KNTy.MVP.Runtime;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = ""{name}Model"", menuName = ""MVP/ModelAsset/{name}Model"")]
 public class {name}Model : ModelBase<{name}RuntimeModel, {name}ViewModel>
 {{
     public override {name}RuntimeModel CreateTypedRuntimeModel()

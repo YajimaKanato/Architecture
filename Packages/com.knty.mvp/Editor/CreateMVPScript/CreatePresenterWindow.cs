@@ -9,19 +9,9 @@ namespace KNTy.MVP.Editor
         string _presenterName;
 
         [MenuItem("MVP/Create/Script/Presenter")]
-        [MenuItem("Assets/Create/MVP/Presenter")]
+        [MenuItem("Assets/Create/MVP/Script/Presenter")]
         static void OpenCreatePresenterMenu()
         {
-            OpenCreatePresenter();
-            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreatePresenterMenu", true);
-        }
-
-        [InitializeOnLoadMethod]
-        static void ResumeCreatingPresenter()
-        {
-            if (!SessionState.GetBool("OpenCreatePresenterMenu", false)) return;
-            SessionState.EraseBool("OpenCreatePresenterMenu");
             OpenCreatePresenter();
         }
 

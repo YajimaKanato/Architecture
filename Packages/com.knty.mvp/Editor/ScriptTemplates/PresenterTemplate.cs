@@ -10,8 +10,7 @@ using System;
 
 public class {name}Presenter : PresenterBase
 {{
-    public {name}Presenter(RuntimeModelStorage storage_RM, ViewModelStorage storage_VM, IEventHub inputHub, IEventHub eventHub) : 
-        base(storage_RM, storage_VM, inputHub, eventHub)
+    public override void Initialize(RuntimeModelStorage storage_RM, ViewModelStorage storage_VM, IEventHub inputHub, IEventHub eventHub)
     {{
 
     }}

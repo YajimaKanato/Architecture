@@ -12,26 +12,16 @@ namespace KNTy.MVP.Editor
         int _viewIndex;
 
         [MenuItem("MVP/Create/Script/State", true)]
-        [MenuItem("Assets/Create/MVP/State", true)]
+        [MenuItem("Assets/Create/MVP/Script/State", true)]
         static bool ValidateOpenCreatingState()
         {
             return ScriptCollection.ViewNames.Count > 0;
         }
 
         [MenuItem("MVP/Create/Script/State")]
-        [MenuItem("Assets/Create/MVP/State")]
+        [MenuItem("Assets/Create/MVP/Script/State")]
         static void OpenCreateStateFromMenu()
         {
-            OpenCreateState();
-            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreateState", true);
-        }
-
-        [InitializeOnLoadMethod]
-        static void ResumeCreatingState()
-        {
-            if (!SessionState.GetBool("OpenCreateState", false)) return;
-            SessionState.EraseBool("OpenCreateState");
             OpenCreateState();
         }
 

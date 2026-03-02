@@ -3,21 +3,24 @@ using System.Collections.Generic;
 
 namespace KNTy.MVP.Runtime
 {
-    public abstract class VaultBase<T> : IVault
+    public class VaultBase<T> : IDisposable where T : class, IDisposable
     {
-        protected readonly Dictionary<int, T> _vault = new();
+        protected readonly Dictionary<ID, T> _vault = new();
 
-        public abstract bool TryRegister(int id, T runtimeModel);
-
-        public bool TryGetModel(int id, out T runtimeModel)
+        public bool TryRegister(ID id, T model)
         {
-            return _vault.TryGetValue(id, out runtimeModel);
+            return _vault.TryAdd(id, model);
         }
 
-        public bool TryUnregister(int id)
+        public bool TryGetModel(ID id, out T model)
         {
-            if (!_vault.TryGetValue(id, out T runtimeModel)) return false;
-            (runtimeModel as IDisposable)?.Dispose();
+            return _vault.TryGetValue(id, out model);
+        }
+
+        public bool TryUnregister(ID id)
+        {
+            if (!_vault.TryGetValue(id, out T model)) return false;
+            model.Dispose();
             _vault.Remove(id);
             return true;
         }

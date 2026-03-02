@@ -8,14 +8,7 @@ namespace KNTy.MVP.Runtime
         protected ViewModelStorage _storage_VM;
         protected IEventHub _inputHub;
         protected IEventHub _eventHub;
-        public PresenterBase(RuntimeModelStorage storage_RM, ViewModelStorage storage_VM, IEventHub inputHub, IEventHub eventHub)
-        {
-            _storage_RM = storage_RM;
-            _storage_VM = storage_VM;
-            _inputHub = inputHub;
-            _eventHub = eventHub;
-            SubscribeInputHub();
-        }
+        public abstract void Initialize(RuntimeModelStorage storage_RM, ViewModelStorage storage_VM, IEventHub inputHub, IEventHub eventHub);
         protected abstract void SubscribeInputHub();
         public abstract void Dispose();
     }

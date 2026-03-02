@@ -9,19 +9,9 @@ namespace KNTy.MVP.Editor
         string _eventHubName;
 
         [MenuItem("MVP/Create/Script/EventHub")]
-        [MenuItem("Assets/Create/MVP/EventHub")]
+        [MenuItem("Assets/Create/MVP/Script/EventHub")]
         static void OpenCreateEventHubFromMenu()
         {
-            OpenCreateEventHub();
-            if (EditorApplication.isCompiling || EditorApplication.isUpdating)
-                SessionState.SetBool("OpenCreateEventHub", true);
-        }
-
-        [InitializeOnLoadMethod]
-        static void ResumeCreatingEventHub()
-        {
-            if (!SessionState.GetBool("OpenCreateEventHub", false)) return;
-            SessionState.EraseBool("OpenCreateEventHub");
             OpenCreateEventHub();
         }
 
