@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     [Serializable]
     public class ID

@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal class ScriptValidator : AssetPostprocessor
     {

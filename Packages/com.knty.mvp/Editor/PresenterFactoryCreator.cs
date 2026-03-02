@@ -2,14 +2,14 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
-    internal partial class CreateMVPScriptWindow
+    internal partial class CreateKNTyArchScriptWindow
     {
         string _presenterFactoryName;
 
-        [MenuItem("MVP/Create/Script/PresenterFactory")]
-        [MenuItem("Assets/Create/MVP/Script/PresenterFactory")]
+        [MenuItem("KNTyArch/Create/Script/PresenterFactory")]
+        [MenuItem("Assets/Create/KNTyArch/Script/PresenterFactory")]
         static void OpenCreatePresenterFactoryFromMenu()
         {
             OpenCreatePresenterFactory();
@@ -17,7 +17,7 @@ namespace KNTy.MVP.Editor
 
         static void OpenCreatePresenterFactory()
         {
-            var window = GetWindow<CreateMVPScriptWindow>("PresenterFactory");
+            var window = GetWindow<CreateKNTyArchScriptWindow>("PresenterFactory");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._presenterFactoryName = "New";
@@ -39,7 +39,7 @@ namespace KNTy.MVP.Editor
                     _isFinished = true;
                     e.Use();
                 }
-                if (_isFinished) CreateMVPScript.CreatePresenterFactory(_presenterFactoryName);
+                if (_isFinished) CreateKNTyArchScript.CreatePresenterFactory(_presenterFactoryName);
             }
         }
     }

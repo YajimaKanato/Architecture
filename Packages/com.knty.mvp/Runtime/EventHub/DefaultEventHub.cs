@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     public sealed class DefaultEventHub : IEventHub
     {

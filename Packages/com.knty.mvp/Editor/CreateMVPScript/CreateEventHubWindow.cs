@@ -2,14 +2,14 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
-    internal partial class CreateMVPScriptWindow
+    internal partial class CreateKNTyArchScriptWindow
     {
         string _eventHubName;
 
-        [MenuItem("MVP/Create/Script/EventHub")]
-        [MenuItem("Assets/Create/MVP/Script/EventHub")]
+        [MenuItem("KNTyArch/Create/Script/EventHub")]
+        [MenuItem("Assets/Create/KNTyArch/Script/EventHub")]
         static void OpenCreateEventHubFromMenu()
         {
             OpenCreateEventHub();
@@ -17,7 +17,7 @@ namespace KNTy.MVP.Editor
 
         static void OpenCreateEventHub()
         {
-            var window = GetWindow<CreateMVPScriptWindow>("Create EventHub");
+            var window = GetWindow<CreateKNTyArchScriptWindow>("Create EventHub");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._eventHubName = "New";
@@ -39,7 +39,7 @@ namespace KNTy.MVP.Editor
                     _isFinished = true;
                     e.Use();
                 }
-                if (_isFinished) CreateMVPScript.CreateEventHub(_eventHubName);
+                if (_isFinished) CreateKNTyArchScript.CreateEventHub(_eventHubName);
             }
         }
     }

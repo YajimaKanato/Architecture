@@ -2,14 +2,14 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
-    internal partial class CreateMVPScriptWindow
+    internal partial class CreateKNTyArchScriptWindow
     {
         string _viewName;
 
-        [MenuItem("MVP/Create/Script/View")]
-        [MenuItem("Assets/Create/MVP/Script/View")]
+        [MenuItem("KNTyArch/Create/Script/View")]
+        [MenuItem("Assets/Create/KNTyArch/Script/View")]
         static void OpenCreateViewFromMenu()
         {
             OpenCreateView();
@@ -17,7 +17,7 @@ namespace KNTy.MVP.Editor
 
         static void OpenCreateView()
         {
-            var window = GetWindow<CreateMVPScriptWindow>("Create View");
+            var window = GetWindow<CreateKNTyArchScriptWindow>("Create View");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._viewName = "New";
@@ -42,7 +42,7 @@ namespace KNTy.MVP.Editor
                 }
                 if (_isFinished)
                 {
-                    CreateMVPScript.CreateView(_viewName);
+                    CreateKNTyArchScript.CreateView(_viewName);
                 }
             }
         }

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using System;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class ScriptNameValidator
     {
@@ -19,7 +19,7 @@ namespace KNTy.MVP.Editor
             new NamingRule(RuleType.Interface,"IState","State")
         };
 
-        [MenuItem("MVP/Validation/Script Naming Validation")]
+        [MenuItem("KNTyArch/Validation/Script Naming Validation")]
         static void ScriptNamingValidator()
         {
             var guids = AssetDatabase.FindAssets("t:MonoScript");

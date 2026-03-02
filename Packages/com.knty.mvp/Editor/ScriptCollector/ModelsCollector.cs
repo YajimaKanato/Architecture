@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
-using KNTy.MVP.Runtime;
+using KNTyArch.Runtime;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static partial class ScriptCollection
     {
@@ -17,7 +17,7 @@ namespace KNTy.MVP.Editor
         internal static void CollectModels()
         {
             _modelNames.Clear();
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/MVP/Models/Model" });
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/Models/Model" });
 
             foreach (var guid in guids)
             {
@@ -37,7 +37,7 @@ namespace KNTy.MVP.Editor
         internal static void CollectRuntimeModels()
         {
             _runtimeModelNames.Clear();
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/MVP/Models/RuntimeModel" });
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/Models/RuntimeModel" });
 
             foreach (var guid in guids)
             {

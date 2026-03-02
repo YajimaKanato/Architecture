@@ -1,6 +1,6 @@
 using System;
 
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     public abstract class PresenterBase : IDisposable
     {

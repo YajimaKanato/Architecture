@@ -1,11 +1,11 @@
 #if UNITY_EDITOR
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class PresenterTemplate
     {
         internal static string Presenter(string name) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 using System;
 
 public class {name}Presenter : PresenterBase

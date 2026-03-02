@@ -3,23 +3,23 @@ using UnityEngine;
 using UnityEditor;
 using System.Linq;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
-    internal partial class CreateMVPScriptWindow
+    internal partial class CreateKNTyArchScriptWindow
     {
         string _stateName;
         string[] _viewNames;
         int _viewIndex;
 
-        [MenuItem("MVP/Create/Script/State", true)]
-        [MenuItem("Assets/Create/MVP/Script/State", true)]
+        [MenuItem("KNTyArch/Create/Script/State", true)]
+        [MenuItem("Assets/Create/KNTyArch/Script/State", true)]
         static bool ValidateOpenCreatingState()
         {
             return ScriptCollection.ViewNames.Count > 0;
         }
 
-        [MenuItem("MVP/Create/Script/State")]
-        [MenuItem("Assets/Create/MVP/Script/State")]
+        [MenuItem("KNTyArch/Create/Script/State")]
+        [MenuItem("Assets/Create/KNTyArch/Script/State")]
         static void OpenCreateStateFromMenu()
         {
             OpenCreateState();
@@ -27,7 +27,7 @@ namespace KNTy.MVP.Editor
 
         static void OpenCreateState()
         {
-            var window = GetWindow<CreateMVPScriptWindow>("Create State");
+            var window = GetWindow<CreateKNTyArchScriptWindow>("Create State");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._stateName = "New";
@@ -55,7 +55,7 @@ namespace KNTy.MVP.Editor
                 if (_isFinished)
                 {
                     var viewName = _viewNames[_viewIndex].Replace("View", "");
-                    CreateMVPScript.CreateState(_stateName, viewName);
+                    CreateKNTyArchScript.CreateState(_stateName, viewName);
                 }
             }
         }

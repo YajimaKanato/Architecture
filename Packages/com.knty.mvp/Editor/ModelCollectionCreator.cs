@@ -1,15 +1,15 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using KNTy.MVP.Runtime;
+using KNTyArch.Runtime;
 using System.Linq;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class ModelCollectionCreator
     {
-        [MenuItem("MVP/Create/Asset/ModelCollection")]
-        [MenuItem("Assets/Create/MVP/Asset/ModelCollection")]
+        [MenuItem("KNTyArch/Create/Asset/ModelCollection")]
+        [MenuItem("Assets/Create/KNTyArch/Asset/ModelCollection")]
         static void Create()
         {
             var collection = ScriptableObject.CreateInstance<ModelCollection>();

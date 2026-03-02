@@ -1,4 +1,4 @@
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     public sealed class StateMachine<TView> where TView : ViewBase
     {

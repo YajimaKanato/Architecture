@@ -1,11 +1,11 @@
 #if UNITY_EDITOR
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class ViewTemplate
     {
         internal static string View(string name) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 using UnityEngine;
 
 public class {name}View : ViewBase

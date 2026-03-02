@@ -1,11 +1,11 @@
 #if UNITY_EDITOR
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class RuntimeModelTemplate
     {
         internal static string RuntimeModel(string name) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 
 public class {name}RuntimeModel : RuntimeModelBase
 {{

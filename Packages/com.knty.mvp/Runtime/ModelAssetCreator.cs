@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     public static class ModelAssetCreator
     {

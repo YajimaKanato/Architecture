@@ -2,14 +2,14 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
-    internal partial class CreateMVPScriptWindow
+    internal partial class CreateKNTyArchScriptWindow
     {
         string _modelName;
 
-        [MenuItem("MVP/Create/Script/Models")]
-        [MenuItem("Assets/Create/MVP/Script/Models")]
+        [MenuItem("KNTyArch/Create/Script/Models")]
+        [MenuItem("Assets/Create/KNTyArch/Script/Models")]
         static void OpenCreateModelsFromMenu()
         {
             OpenCreateModels();
@@ -17,7 +17,7 @@ namespace KNTy.MVP.Editor
 
         static void OpenCreateModels()
         {
-            var window = GetWindow<CreateMVPScriptWindow>("Create Models");
+            var window = GetWindow<CreateKNTyArchScriptWindow>("Create Models");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._modelName = "New";
@@ -40,7 +40,7 @@ namespace KNTy.MVP.Editor
                     _isFinished = true;
                     e.Use();
                 }
-                if (_isFinished) CreateMVPScript.CreateModels(_modelName);
+                if (_isFinished) CreateKNTyArchScript.CreateModels(_modelName);
             }
         }
     }

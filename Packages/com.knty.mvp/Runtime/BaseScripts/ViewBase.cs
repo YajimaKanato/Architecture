@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     public abstract class ViewBase : MonoBehaviour
     {

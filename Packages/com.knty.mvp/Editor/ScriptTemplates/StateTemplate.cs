@@ -1,10 +1,11 @@
 #if UNITY_EDITOR
-namespace KNTy.MVP.Editor
+
+namespace KNTyArch.Editor
 {
     internal static class StateTemplate
     {
         internal static string State(string className, string viewName) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 using System;
 
 public class {className}State : IState<{viewName}View>
@@ -36,7 +37,7 @@ public class {className}State : IState<{viewName}View>
 
     public void Exit()
     {{
-        _subscripotion?.Dispose();
+        _subscription?.Dispose();
     }}
 }}";
     }

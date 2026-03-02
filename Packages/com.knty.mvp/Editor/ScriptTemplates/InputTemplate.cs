@@ -1,11 +1,11 @@
 #if UNITY_EDITOR
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class InputTemplate
     {
         internal static string Input(string className,string runtimeModelName) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 using UnityEngine;
 
 public class {className}Input : InputBase<{runtimeModelName}RuntimeModel>

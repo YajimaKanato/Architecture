@@ -1,4 +1,4 @@
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     public interface IState<TView> where TView : ViewBase
     {

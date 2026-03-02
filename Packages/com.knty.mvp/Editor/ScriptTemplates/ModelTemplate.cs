@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class ModelTemplate
     {
@@ -8,7 +8,7 @@ namespace KNTy.MVP.Editor
 $@"#if UNITY_EDITOR
 using UnityEditor;
 #endif
-using KNTy.MVP.Runtime;
+using KNTyArch.Runtime;
 using UnityEngine;
 
 public class {name}Model : ModelBase<{name}RuntimeModel, {name}ViewModel>
@@ -25,7 +25,7 @@ public class {name}Model : ModelBase<{name}RuntimeModel, {name}ViewModel>
 
 #if UNITY_EDITOR
 
-    [MenuItem(""Assets/Create/MVP/Asset/Models/{name}Model"")]
+    [MenuItem(""Assets/Create/KNTyArch/Asset/Models/{name}Model"")]
     static void CreateModel()
     {{
         ModelAssetCreator.CreateModelAsset<{name}Model>();

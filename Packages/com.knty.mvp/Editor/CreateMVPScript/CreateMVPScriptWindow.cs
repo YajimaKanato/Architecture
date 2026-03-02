@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
-    internal partial class CreateMVPScriptWindow : EditorWindow
+    internal partial class CreateKNTyArchScriptWindow : EditorWindow
     {
         enum CreateMenu
         {

@@ -1,10 +1,11 @@
 #if UNITY_EDITOR
-namespace KNTy.MVP.Editor
+
+namespace KNTyArch.Editor
 {
     internal static class EventHubTemplate
     {
         internal static string EventHub(string name) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 using System;
 using System.Collections.Generic;
 

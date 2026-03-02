@@ -3,23 +3,23 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
-    internal partial class CreateMVPScriptWindow
+    internal partial class CreateKNTyArchScriptWindow
     {
         string _inputName;
         string[] _runtimeModels;
         int _runtimeModelIndex;
 
-        [MenuItem("MVP/Create/Script/Input", true)]
-        [MenuItem("Assets/Create/MVP/Script/Input", true)]
+        [MenuItem("KNTyArch/Create/Script/Input", true)]
+        [MenuItem("Assets/Create/KNTyArch/Script/Input", true)]
         static bool ValidateOpenCreateInput()
         {
             return ScriptCollection.RuntimeModelNames.Count > 0;
         }
 
-        [MenuItem("MVP/Create/Script/Input")]
-        [MenuItem("Assets/Create/MVP/Script/Input")]
+        [MenuItem("KNTyArch/Create/Script/Input")]
+        [MenuItem("Assets/Create/KNTyArch/Script/Input")]
         static void OpenCreateInputFromMenu()
         {
             OpenCreateInput();
@@ -27,7 +27,7 @@ namespace KNTy.MVP.Editor
 
         static void OpenCreateInput()
         {
-            var window = GetWindow<CreateMVPScriptWindow>("Create Input");
+            var window = GetWindow<CreateKNTyArchScriptWindow>("Create Input");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._inputName = "New";
@@ -55,7 +55,7 @@ namespace KNTy.MVP.Editor
                 if (_isFinished)
                 {
                     var runtimeModelName = _runtimeModels[_runtimeModelIndex].Replace("RuntimeModel", "");
-                    CreateMVPScript.CreateInput(_inputName, runtimeModelName);
+                    CreateKNTyArchScript.CreateInput(_inputName, runtimeModelName);
                 }
             }
         }

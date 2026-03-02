@@ -1,11 +1,11 @@
-using UnityEngine;
+#if UNITY_EDITOR
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class PresenterFactoryTemplate
     {
         internal static string PresenterFactory(string className) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 using System.Collections.Generic;
 
 public class {className}ScenePresenterFactory : IPresenterFactory
@@ -30,3 +30,4 @@ public class {className}ScenePresenterFactory : IPresenterFactory
 }}";
     }
 }
+#endif

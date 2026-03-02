@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace KNTy.MVP.Runtime
+namespace KNTyArch.Runtime
 {
     public abstract class ModelBase : ScriptableObject
     {

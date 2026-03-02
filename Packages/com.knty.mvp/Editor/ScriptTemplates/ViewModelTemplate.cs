@@ -1,11 +1,11 @@
-using UnityEngine;
+#if UNITY_EDITOR
 
-namespace KNTy.MVP.Editor
+namespace KNTyArch.Editor
 {
     internal static class ViewModelTemplate
     {
         internal static string ViewModel(string className) =>
-$@"using KNTy.MVP.Runtime;
+$@"using KNTyArch.Runtime;
 
 public class {className}ViewModel : ViewModelBase
 {{
@@ -21,3 +21,4 @@ public class {className}ViewModel : ViewModelBase
 }}";
     }
 }
+#endif
