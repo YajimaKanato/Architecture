@@ -13,7 +13,7 @@ namespace KNTy.MVP.Runtime
             var list = modelCollection.ModelList;
             foreach (var model in list)
             {
-                _modelGenerateDict[model.GetRuntimeModelType()] = model.CreateViewModel;
+                _modelGenerateDict[model.GetViewModelType()] = model.CreateViewModel;
             }
         }
 

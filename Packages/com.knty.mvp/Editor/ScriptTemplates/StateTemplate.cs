@@ -26,7 +26,7 @@ public class {className}State : IState<{viewName}View>
 
     public void Enter()
     {{
-        //_subscripotion = _view.EventHub.Subscribe<>();
+        //_subscription = _view.EventHub.Subscribe<>();
     }}
 
     public void Execute()

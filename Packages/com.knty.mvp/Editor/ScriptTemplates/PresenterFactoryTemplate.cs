@@ -8,7 +8,7 @@ namespace KNTy.MVP.Editor
 $@"using KNTy.MVP.Runtime;
 using System.Collections.Generic;
 
-public class DemoScenePresenterFactory : IPresenterFactory
+public class {className}ScenePresenterFactory : IPresenterFactory
 {{
     readonly List<PresenterBase> _presenters = new();
 
