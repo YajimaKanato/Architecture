@@ -14,7 +14,7 @@ namespace KNTy.MVP.Editor
         {
             var collection = ScriptableObject.CreateInstance<ModelCollection>();
 
-            var guids = AssetDatabase.FindAssets("t:ModelBase", new string[] { "Assets/Scripts/MVP/Models/Model" });
+            var guids = AssetDatabase.FindAssets("t:ModelBase", new string[] { "Assets/ModelAssets" });
 
             var models = guids
                 .Select(g =>
@@ -33,6 +33,7 @@ namespace KNTy.MVP.Editor
 
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = collection;
+            Debug.Log($"Create \"ModelCollection.asset\" under \"Assets\"", collection);
         }
     }
 }
