@@ -16,7 +16,7 @@ namespace KNTy.MVP.Editor
             new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),
             new NamingRule(RuleType.BaseClass,"InputBase","Input"),
             new NamingRule(RuleType.Interface,"IEventHub","Hub"),
-            new NamingRule(RuleType.GenericClass,"IState","State")
+            new NamingRule(RuleType.Interface,"IState","State")
         };
 
         [MenuItem("MVP/Validation/Script Naming Validation")]

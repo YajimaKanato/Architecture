@@ -25,8 +25,12 @@ namespace KNTy.MVP.Runtime
             return true;
         }
 
-        public virtual void Dispose()
+        public void Dispose()
         {
+            foreach (var vault in _vault.Values)
+            {
+                vault.Dispose();
+            }
             _vault.Clear();
         }
     }
