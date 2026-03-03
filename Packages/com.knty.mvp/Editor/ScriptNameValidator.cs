@@ -16,7 +16,8 @@ namespace KNTyArch.Editor
             new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),
             new NamingRule(RuleType.BaseClass,"InputBase","Input"),
             new NamingRule(RuleType.Interface,"IEventHub","Hub"),
-            new NamingRule(RuleType.Interface,"IState","State")
+            new NamingRule(RuleType.Interface,"IState","State"),
+            new NamingRule(RuleType.Interface,"IToken","Token")
         };
 
         [MenuItem("KNTyArch/Validation/Script Naming Validation")]
@@ -111,7 +112,7 @@ namespace KNTyArch.Editor
             Interface
         }
 
-        struct NamingRule
+        readonly struct NamingRule
         {
             public readonly RuleType RuleType;
             public readonly string TypeName;

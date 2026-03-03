@@ -116,6 +116,14 @@ namespace KNTyArch.Editor
 
             CreateScript(path, $"{className}PresenterFactory.cs", PresenterFactoryTemplate.PresenterFactory(className));
         }
+
+        internal static void CreateToken(string className)
+        {
+            var root = EnsureKNTyArchRootFolder();
+            var path = EnsureFolder(root, "Token");
+
+            CreateScript(path, $"{className}Token.cs", TokenTemplate.Token(className));
+        }
     }
 }
 #endif

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace KNTyArch.Runtime
 {
@@ -6,6 +8,10 @@ namespace KNTyArch.Runtime
     {
         [SerializeField] bool _isDDOL = true;
         [SerializeField] ModelCollection _modelCollection;
+        readonly Dictionary<string, IPresenterFactory> _presenterFactoryDict = new()
+        {
+
+        };
         PresenterFactoryStateMachine _presenterFactory;
         RuntimeModelStorage _runtimeModelStorage;
         ViewModelStorage _viewModelStorage;
@@ -21,7 +27,12 @@ namespace KNTyArch.Runtime
             _eventHub = new DefaultEventHub();
             _runtimeModelStorage = new RuntimeModelStorage(_modelCollection);
             _viewModelStorage = new ViewModelStorage(_modelCollection);
+            foreach (var presenterFactory in _presenterFactoryDict.Values)
+            {
+                presenterFactory.GeneratePresenter(_runtimeModelStorage, _viewModelStorage, _inputHub, _eventHub);
+            }
             _presenterFactory = new PresenterFactoryStateMachine(_runtimeModelStorage, _viewModelStorage, _inputHub, _eventHub);
+            SceneManager.sceneLoaded += OnSceneLoaded;
 
             var inputs = FindObjectsByType<InputBase>(FindObjectsSortMode.None);
             foreach (var input in inputs)
@@ -62,6 +73,11 @@ namespace KNTyArch.Runtime
         private void OnDestroy()
         {
             _instance = null;
+        }
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            if (_presenterFactoryDict.TryGetValue(scene.name, out var presenterFactory)) _presenterFactory.ChangeFactory(presenterFactory);
         }
     }
 }

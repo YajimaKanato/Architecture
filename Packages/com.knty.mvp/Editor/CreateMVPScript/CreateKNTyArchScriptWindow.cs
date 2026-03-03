@@ -14,7 +14,8 @@ namespace KNTyArch.Editor
             View,
             Input,
             EventHub,
-            State
+            State,
+            Token
         }
 
         CreateMenu _createMenu = CreateMenu.None;
@@ -44,6 +45,9 @@ namespace KNTyArch.Editor
                     break;
                 case CreateMenu.State:
                     StateWindow();
+                    break;
+                case CreateMenu.Token:
+                    TokenWindow();
                     break;
             }
             if (_isFinished)
