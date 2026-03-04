@@ -4,7 +4,7 @@ namespace KNTyArch.Editor
 {
     internal static class InputTemplate
     {
-        internal static string Input(string className,string runtimeModelName) =>
+        internal static string Input(string className, string runtimeModelName) =>
 $@"using KNTyArch.Runtime;
 using UnityEngine;
 

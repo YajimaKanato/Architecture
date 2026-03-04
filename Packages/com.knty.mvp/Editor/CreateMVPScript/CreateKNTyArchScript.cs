@@ -76,12 +76,12 @@ namespace KNTyArch.Editor
             CreateScript(path, $"{className}Presenter.cs", PresenterTemplate.Presenter(className));
         }
 
-        internal static void CreateView(string className)
+        internal static void CreateView(string className, string runtimeModelName)
         {
             var root = EnsureKNTyArchRootFolder();
             var path = EnsureFolder(root, "View");
 
-            CreateScript(path, $"{className}View.cs", ViewTemplate.View(className));
+            CreateScript(path, $"{className}View.cs", ViewTemplate.View(className, runtimeModelName));
         }
 
         internal static void CreateInput(string className, string runtimeModelName)

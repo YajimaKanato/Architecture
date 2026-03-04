@@ -1,12 +1,20 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 namespace KNTyArch.Editor
 {
     internal partial class CreateKNTyArchScriptWindow
     {
         string _viewName;
+
+        [MenuItem("KNTyArch/Create/Script/View",true)]
+        [MenuItem("Assets/Create/KNTyArch/Script/View",true)]
+        static bool ValidateOpenCreateView()
+        {
+            return ScriptCollection.RuntimeModelNames.Count > 0;
+        }
 
         [MenuItem("KNTyArch/Create/Script/View")]
         [MenuItem("Assets/Create/KNTyArch/Script/View")]
@@ -21,6 +29,8 @@ namespace KNTyArch.Editor
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._viewName = "New";
+            window._runtimeModels = ScriptCollection.RuntimeModelNames.ToArray();
+            window._runtimeModelIndex = 0;
             window._createMenu = CreateMenu.View;
         }
 
@@ -28,6 +38,7 @@ namespace KNTyArch.Editor
         {
             GUILayout.Label("Create", EditorStyles.boldLabel);
             _viewName = EditorGUILayout.TextField("ScriptName", _viewName);
+            _runtimeModelIndex = EditorGUILayout.Popup("Model Type", _runtimeModelIndex, _runtimeModels);
 
             using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_viewName)))
             {
@@ -42,7 +53,8 @@ namespace KNTyArch.Editor
                 }
                 if (_isFinished)
                 {
-                    CreateKNTyArchScript.CreateView(_viewName);
+                    var runtimeModel = _runtimeModels[_runtimeModelIndex].Replace("Runtime", "");
+                    CreateKNTyArchScript.CreateView(_viewName, runtimeModel);
                 }
             }
         }
