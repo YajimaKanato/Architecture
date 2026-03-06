@@ -7,13 +7,13 @@ namespace KNTyArch.Editor
         internal static string Token(string className) =>
 $@"using KNTyArch.Runtime;
 
-public class DemoToken : IToken
+public readonly struct {className}Token : IToken
 {{
-    public ID ID => throw new System.NotImplementedException();
+    public readonly string ID;
 
-    public DemoToken(ID id)
+    public {className}Token(string id)
     {{
-
+        ID = id;
     }}
 }}";
     }

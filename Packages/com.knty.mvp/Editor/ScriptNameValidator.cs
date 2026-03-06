@@ -9,8 +9,8 @@ namespace KNTyArch.Editor
     {
         static readonly NamingRule[] Rules =
         {
-            new NamingRule(RuleType.GenericClass, "ModelBase", "Model"),
-            new NamingRule(RuleType.BaseClass, "RuntimeModelBase", "RuntimeModel"),
+            new NamingRule(RuleType.GenericClass, "DefinitionBase", "Definition"),
+            new NamingRule(RuleType.BaseClass, "RuntimeBase", "Runtime"),
             new NamingRule(RuleType.Interface,"IViewModel","ViewModel"),
             new NamingRule(RuleType.BaseClass, "ViewBase", "View"),
             new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),

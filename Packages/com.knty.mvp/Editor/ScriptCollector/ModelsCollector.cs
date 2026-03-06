@@ -7,17 +7,17 @@ namespace KNTyArch.Editor
 {
     internal static partial class ScriptCollection
     {
-        static List<string> _modelNames = new();
-        static List<string> _runtimeModelNames = new();
+        static List<string> _definitionNames = new();
+        static List<string> _runtimeNames = new();
 
-        internal static IReadOnlyList<string> ModelNames => _modelNames;
-        internal static IReadOnlyList<string> RuntimeModelNames => _runtimeModelNames;
+        internal static IReadOnlyList<string> DefinitionNames => _definitionNames;
+        internal static IReadOnlyList<string> RuntimeNames => _runtimeNames;
 
         //[InitializeOnLoadMethod]
-        internal static void CollectModels()
+        internal static void CollectDefinitions()
         {
-            _modelNames.Clear();
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/Models/Model" });
+            _definitionNames.Clear();
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/Models/Definition" });
 
             foreach (var guid in guids)
             {
@@ -26,18 +26,18 @@ namespace KNTyArch.Editor
                 var type = mono?.GetClass();
                 if (type == null) continue;
 
-                if (typeof(ModelBase).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
+                if (typeof(DefinitionBase).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
                 {
-                    _modelNames.Add(type.Name);
+                    _definitionNames.Add(type.Name);
                 }
             }
         }
 
         [InitializeOnLoadMethod]
-        internal static void CollectRuntimeModels()
+        internal static void CollectRuntimes()
         {
-            _runtimeModelNames.Clear();
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/Models/RuntimeModel" });
+            _runtimeNames.Clear();
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/Models/Runtime" });
 
             foreach (var guid in guids)
             {
@@ -46,9 +46,9 @@ namespace KNTyArch.Editor
                 var type = mono?.GetClass();
                 if (type == null) continue;
 
-                if (typeof(RuntimeModelBase).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
+                if (typeof(RuntimeBase).IsAssignableFrom(type) && !type.IsAbstract && !type.IsInterface)
                 {
-                    _runtimeModelNames.Add(type.Name);
+                    _runtimeNames.Add(type.Name);
                 }
             }
         }

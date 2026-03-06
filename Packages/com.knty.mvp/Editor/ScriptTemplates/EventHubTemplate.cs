@@ -13,7 +13,7 @@ public sealed class {name}EventHub : IEventHub
 {{
     readonly Dictionary<Type, List<Delegate>> _subscribers = new();
 
-    public void Publish<TEvent>(TEvent e) where TEvent : IToken
+    public void Publish<TEvent>(TEvent e) where TEvent : struct, IToken
     {{
         var type = typeof(TEvent);
         if (!_subscribers.TryGetValue(type, out var list)) return;
@@ -25,7 +25,7 @@ public sealed class {name}EventHub : IEventHub
         }}
     }}
 
-    public IDisposable Subscribe<TEvent>(Action<TEvent> handler) where TEvent : IToken
+    public IDisposable Subscribe<TEvent>(Action<TEvent> handler) where TEvent : struct, IToken
     {{
         var type = typeof(TEvent);
         if (!_subscribers.TryGetValue(type, out var list))

@@ -13,7 +13,7 @@ namespace KNTyArch.Editor
         [MenuItem("Assets/Create/KNTyArch/Script/View",true)]
         static bool ValidateOpenCreateView()
         {
-            return ScriptCollection.RuntimeModelNames.Count > 0;
+            return ScriptCollection.RuntimeNames.Count > 0;
         }
 
         [MenuItem("KNTyArch/Create/Script/View")]
@@ -29,7 +29,7 @@ namespace KNTyArch.Editor
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._viewName = "New";
-            window._runtimeModels = ScriptCollection.RuntimeModelNames.ToArray();
+            window._runtimeModels = ScriptCollection.RuntimeNames.ToArray();
             window._runtimeModelIndex = 0;
             window._createMenu = CreateMenu.View;
         }

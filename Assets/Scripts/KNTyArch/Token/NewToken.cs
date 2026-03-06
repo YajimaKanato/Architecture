@@ -1,11 +1,11 @@
 using KNTyArch.Runtime;
 
-public class DemoToken : IToken
+public readonly struct NewToken : IToken
 {
-    public ID ID => throw new System.NotImplementedException();
+    public readonly string ID;
 
-    public DemoToken(ID id)
+    public NewToken(string id)
     {
-
+        ID = id;
     }
 }

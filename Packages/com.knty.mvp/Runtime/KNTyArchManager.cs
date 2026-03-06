@@ -7,45 +7,36 @@ namespace KNTyArch.Runtime
     public class KNTyArchManager : MonoBehaviour
     {
         [SerializeField] bool _isDDOL = true;
-        [SerializeField] ModelCollection _modelCollection;
+        [SerializeField] DefinitionCollection _modelCollection;
         readonly Dictionary<string, IPresenterFactory> _presenterFactoryDict = new()
         {
 
         };
         PresenterFactoryStateMachine _presenterFactory;
-        RuntimeModelStorage _runtimeModelStorage;
-        ViewModelStorage _viewModelStorage;
-        IEventHub _inputHub;
-        IEventHub _eventHub;
 
         static KNTyArchManager _instance;
         public static KNTyArchManager Instance => _instance;
 
         public void Initialize()
         {
-            _inputHub = new DefaultInputHub();
-            _eventHub = new DefaultEventHub();
-            _runtimeModelStorage = new RuntimeModelStorage(_modelCollection);
-            _viewModelStorage = new ViewModelStorage(_modelCollection);
             foreach (var presenterFactory in _presenterFactoryDict.Values)
             {
-                presenterFactory.GeneratePresenter(_runtimeModelStorage, _viewModelStorage, _inputHub, _eventHub);
+                presenterFactory.GeneratePresenter();
             }
-            _presenterFactory = new PresenterFactoryStateMachine(_runtimeModelStorage, _viewModelStorage, _inputHub, _eventHub);
+            _presenterFactory = new PresenterFactoryStateMachine();
             SceneManager.sceneLoaded += OnSceneLoaded;
 
             var inputs = FindObjectsByType<InputBase>(FindObjectsSortMode.None);
             foreach (var input in inputs)
             {
-                input.SetInputHub(_inputHub);
-                _runtimeModelStorage.TryRegister(input.ModelType(), input.ID);
-                _viewModelStorage.TryRegister(input.ModelType(), input.ID);
+                RuntimeStorage.TryRegister(input.ModelType(), input.ID);
+                ViewDataStorage.TryRegister(input.ModelType(), input.ID);
             }
 
             var views = FindObjectsByType<ViewBase>(FindObjectsSortMode.None);
             foreach (var view in views)
             {
-                view.Initialize(_viewModelStorage, _eventHub);
+                view.Initialize();
             }
         }
 

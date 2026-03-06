@@ -11,10 +11,9 @@ using System;
 public class {className}State : IState<{viewName}View>
 {{
     readonly {viewName}View _view;
-    readonly ViewModelStorage _storage;
     IDisposable _subscription;
 
-    public {className}State({viewName}View view, ViewModelStorage storage)
+    public {className}State({viewName}View view)
     {{
         _view = view;
         _storage = storage;

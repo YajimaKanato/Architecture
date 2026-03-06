@@ -12,11 +12,11 @@ public class {className}ScenePresenterFactory : IPresenterFactory
 {{
     readonly List<PresenterBase> _presenters = new();
 
-    public void GeneratePresenter(RuntimeModelStorage storage_RM, ViewModelStorage storage_VM, IEventHub inputHub, IEventHub eventHub)
+    public void GeneratePresenter()
     {{
         foreach (var presenter in _presenters)
         {{
-            presenter.Initialize(storage_RM, storage_VM, inputHub, eventHub);
+            presenter.Initialize();
         }}
     }}
 

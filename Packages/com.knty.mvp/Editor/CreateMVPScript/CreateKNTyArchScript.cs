@@ -59,13 +59,13 @@ namespace KNTyArch.Editor
         {
             var root = EnsureKNTyArchRootFolder();
             root = EnsureFolder(root, "Models");
-            var modelPath = EnsureFolder(root, "Model");
-            var runtimeModelPath = EnsureFolder(root, "RuntimeModel");
-            var viewModelPath = EnsureFolder(root, "ViewModel");
+            var definitionPath = EnsureFolder(root, "Definition");
+            var runtimePath = EnsureFolder(root, "Runtime");
+            var viewDataPath = EnsureFolder(root, "ViewData");
 
-            CreateScript(modelPath, $"{className}Model.cs", ModelTemplate.Model(className));
-            CreateScript(runtimeModelPath, $"{className}RuntimeModel.cs", RuntimeModelTemplate.RuntimeModel(className));
-            CreateScript(viewModelPath, $"{className}ViewModel.cs", ViewModelTemplate.ViewModel(className));
+            CreateScript(definitionPath, $"{className}Definition.cs", DefinitionTemplate.Definition(className));
+            CreateScript(runtimePath, $"{className}Runtime.cs", RuntimeTemplate.Runtime(className));
+            CreateScript(viewDataPath, $"{className}ViewData.cs", ViewDataTemplate.ViewData(className));
         }
 
         internal static void CreatePresenter(string className)

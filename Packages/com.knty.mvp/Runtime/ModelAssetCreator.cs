@@ -5,7 +5,7 @@ namespace KNTyArch.Runtime
 {
     public static class ModelAssetCreator
     {
-        public static void CreateModelAsset<T>() where T : ModelBase
+        public static void CreateModelAsset<T>() where T : DefinitionBase
         {
             var model = ScriptableObject.CreateInstance<T>();
             EnsureFolderExists();
