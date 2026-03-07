@@ -13,7 +13,6 @@ namespace KNTyArch.Editor
             PresenterFactory,
             View,
             Input,
-            EventHub,
             State,
             Token
         }
@@ -40,9 +39,6 @@ namespace KNTyArch.Editor
                 case CreateMenu.Input:
                     InputWindow();
                     break;
-                case CreateMenu.EventHub:
-                    EventHubWindow();
-                    break;
                 case CreateMenu.State:
                     StateWindow();
                     break;
@@ -50,6 +46,7 @@ namespace KNTyArch.Editor
                     TokenWindow();
                     break;
             }
+
             if (_isFinished)
             {
                 AssetDatabase.Refresh();

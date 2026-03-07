@@ -92,14 +92,6 @@ namespace KNTyArch.Editor
             CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className, runtimeModelName));
         }
 
-        internal static void CreateEventHub(string className)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            var path = EnsureFolder(root, "EventHub");
-
-            CreateScript(path, $"{className}Hub.cs", EventHubTemplate.EventHub(className));
-        }
-
         internal static void CreateState(string className, string viewName)
         {
             var root = EnsureKNTyArchRootFolder();
