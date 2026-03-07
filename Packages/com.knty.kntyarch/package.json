@@ -1,0 +1,10 @@
+{
+  "name": "com.knty.kntyarch",
+  "displayName": "KNTyArch Framework",
+  "version": "0.1.0",
+  "unity": "6000.0",
+  "description": "Architecture support framework",
+  "author": {
+    "name": "KNTy"
+  }
+}
