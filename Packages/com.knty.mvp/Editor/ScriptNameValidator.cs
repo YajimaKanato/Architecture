@@ -11,11 +11,10 @@ namespace KNTyArch.Editor
         {
             new NamingRule(RuleType.GenericClass, "DefinitionBase", "Definition"),
             new NamingRule(RuleType.BaseClass, "RuntimeBase", "Runtime"),
-            new NamingRule(RuleType.Interface,"IViewModel","ViewModel"),
+            new NamingRule(RuleType.Interface,"IViewData","ViewData"),
             new NamingRule(RuleType.BaseClass, "ViewBase", "View"),
             new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),
             new NamingRule(RuleType.BaseClass,"InputBase","Input"),
-            new NamingRule(RuleType.Interface,"IEventHub","Hub"),
             new NamingRule(RuleType.Interface,"IState","State"),
             new NamingRule(RuleType.Interface,"IToken","Token")
         };

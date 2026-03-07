@@ -4,11 +4,11 @@ namespace KNTyArch.Editor
 {
     internal static class ViewTemplate
     {
-        internal static string View(string name, string runtimeModelName) =>
+        internal static string View(string name, string runtimeName) =>
 $@"using KNTyArch.Runtime;
 using UnityEngine;
 
-public class {name}View : ViewBase<{runtimeModelName}RuntimeModel>
+public class {name}View : ViewBase<{runtimeName}Runtime>
 {{
     StateMachine<{name}View> _stateMachine = new();
     IState<{name}View>[] _stateCache;

@@ -24,7 +24,7 @@ public class NewDefinition : DefinitionBase<NewRuntime, NewViewData>
     [MenuItem("Assets/Create/KNTyArch/Asset/Models/NewDefinition")]
     static void CreateDefinition()
     {
-        ModelAssetCreator.CreateModelAsset<NewDefinition>();
+        DefinitionAssetCreator.CreateModelAsset<NewDefinition>();
     }
 #endif
 }

@@ -8,8 +8,8 @@ namespace KNTyArch.Editor
     internal partial class CreateKNTyArchScriptWindow
     {
         string _inputName;
-        string[] _runtimeModels;
-        int _runtimeModelIndex;
+        string[] _runtimes;
+        int _runtimeIndex;
 
         [MenuItem("KNTyArch/Create/Script/Input", true)]
         [MenuItem("Assets/Create/KNTyArch/Script/Input", true)]
@@ -31,8 +31,8 @@ namespace KNTyArch.Editor
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._inputName = "New";
-            window._runtimeModels = ScriptCollection.RuntimeNames.ToArray();
-            window._runtimeModelIndex = 0;
+            window._runtimes = ScriptCollection.RuntimeNames.ToArray();
+            window._runtimeIndex = 0;
             window._createMenu = CreateMenu.Input;
         }
 
@@ -40,7 +40,7 @@ namespace KNTyArch.Editor
         {
             GUILayout.Label("Input", EditorStyles.boldLabel);
             _inputName = EditorGUILayout.TextField("ScriptName", _inputName);
-            _runtimeModelIndex = EditorGUILayout.Popup("RuntimeModel Type", _runtimeModelIndex, _runtimeModels);
+            _runtimeIndex = EditorGUILayout.Popup("Runtime Type", _runtimeIndex, _runtimes);
 
             using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_inputName)))
             {
@@ -54,8 +54,8 @@ namespace KNTyArch.Editor
                 }
                 if (_isFinished)
                 {
-                    var runtimeModelName = _runtimeModels[_runtimeModelIndex].Replace("RuntimeModel", "");
-                    CreateKNTyArchScript.CreateInput(_inputName, runtimeModelName);
+                    var runtimeName = _runtimes[_runtimeIndex].Replace("Runtime", "");
+                    CreateKNTyArchScript.CreateInput(_inputName, runtimeName);
                 }
             }
         }

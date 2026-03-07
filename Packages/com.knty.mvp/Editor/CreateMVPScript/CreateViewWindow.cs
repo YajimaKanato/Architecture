@@ -29,8 +29,8 @@ namespace KNTyArch.Editor
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._viewName = "New";
-            window._runtimeModels = ScriptCollection.RuntimeNames.ToArray();
-            window._runtimeModelIndex = 0;
+            window._runtimes = ScriptCollection.RuntimeNames.ToArray();
+            window._runtimeIndex = 0;
             window._createMenu = CreateMenu.View;
         }
 
@@ -38,7 +38,7 @@ namespace KNTyArch.Editor
         {
             GUILayout.Label("Create", EditorStyles.boldLabel);
             _viewName = EditorGUILayout.TextField("ScriptName", _viewName);
-            _runtimeModelIndex = EditorGUILayout.Popup("Model Type", _runtimeModelIndex, _runtimeModels);
+            _runtimeIndex = EditorGUILayout.Popup("Runtime Type", _runtimeIndex, _runtimes);
 
             using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_viewName)))
             {
@@ -53,8 +53,8 @@ namespace KNTyArch.Editor
                 }
                 if (_isFinished)
                 {
-                    var runtimeModel = _runtimeModels[_runtimeModelIndex].Replace("Runtime", "");
-                    CreateKNTyArchScript.CreateView(_viewName, runtimeModel);
+                    var runtime = _runtimes[_runtimeIndex].Replace("Runtime", "");
+                    CreateKNTyArchScript.CreateView(_viewName, runtime);
                 }
             }
         }

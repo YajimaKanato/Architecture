@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace KNTyArch.Runtime
 {
-    public static class ModelAssetCreator
+    public static class DefinitionAssetCreator
     {
         public static void CreateModelAsset<T>() where T : DefinitionBase
         {
-            var model = ScriptableObject.CreateInstance<T>();
+            var definition = ScriptableObject.CreateInstance<T>();
             EnsureFolderExists();
-            AssetDatabase.CreateAsset(model, AssetDatabase.GenerateUniqueAssetPath($"Assets/ModelAssets/{typeof(T).Name}.asset"));
+            AssetDatabase.CreateAsset(definition, AssetDatabase.GenerateUniqueAssetPath($"Assets/DefinitionAssets/{typeof(T).Name}.asset"));
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
             EditorUtility.FocusProjectWindow();
-            Selection.activeObject = model;
-            Debug.Log($"Create \"{typeof(T).Name}.asset\" under \"Assets/ModelAssets\"", model);
+            Selection.activeObject = definition;
+            Debug.Log($"Create \"{typeof(T).Name}.asset\" under \"Assets/DefinitionAssets\"", definition);
         }
 
         static void EnsureFolderExists()
         {
-            var fullPath = "Assets/ModelAssets";
+            var fullPath = "Assets/DefinitionAssets";
 
             if (AssetDatabase.IsValidFolder(fullPath)) return;
 
