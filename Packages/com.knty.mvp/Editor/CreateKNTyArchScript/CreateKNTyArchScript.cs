@@ -96,18 +96,18 @@ namespace KNTyArch.Editor
         {
             var root = EnsureKNTyArchRootFolder();
             root = EnsureFolder(root, "State");
-            var path = EnsureFolder(root, $"{viewName}State_V");
+            var path = EnsureFolder(root, $"{viewName}ViewState");
 
-            CreateScript(path, $"{viewName}{className}State.cs", StateTemplate.ViewState(className, viewName));
+            CreateScript(path, $"{viewName}View{className}State.cs", StateTemplate.ViewState(className, viewName));
         }
 
         internal static void CreateInteractiveViewState(string className, string interactiveViewName)
         {
             var root = EnsureKNTyArchRootFolder();
             root = EnsureFolder(root, "State");
-            var path = EnsureFolder(root, $"{interactiveViewName}State_IV");
+            var path = EnsureFolder(root, $"{interactiveViewName}IVState");
 
-            CreateScript(path, $"{interactiveViewName}{className}State.cs", StateTemplate.InteractiveViewState(className, interactiveViewName));
+            CreateScript(path, $"{interactiveViewName}IV{className}State.cs", StateTemplate.InteractiveViewState(className, interactiveViewName));
         }
 
         internal static void CreatePresenterFactory(string className)

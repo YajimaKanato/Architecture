@@ -12,7 +12,7 @@ namespace KNTyArch.Editor
             Presenter,
             PresenterFactory,
             View,
-            Input,
+            InteractiveView,
             State,
             Token
         }
@@ -36,7 +36,7 @@ namespace KNTyArch.Editor
                 case CreateMenu.View:
                     ViewWindow();
                     break;
-                case CreateMenu.Input:
+                case CreateMenu.InteractiveView:
                     InteractiveViewWindow();
                     break;
                 case CreateMenu.State:

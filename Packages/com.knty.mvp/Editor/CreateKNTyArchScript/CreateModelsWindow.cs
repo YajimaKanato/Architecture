@@ -8,8 +8,8 @@ namespace KNTyArch.Editor
     {
         string _modelName;
 
-        [MenuItem("KNTyArch/Create/Script/Models")]
-        [MenuItem("Assets/Create/KNTyArch/Script/Models")]
+        [MenuItem("KNTyArch/Create/Script/Core/Models")]
+        [MenuItem("Assets/Create/KNTyArch/Script/Core/Models")]
         static void OpenCreateModelsFromMenu()
         {
             OpenCreateModels();
@@ -26,7 +26,7 @@ namespace KNTyArch.Editor
 
         void ModelWindow()
         {
-            GUILayout.Label("Base Name", EditorStyles.boldLabel);
+            GUILayout.Label("Models", EditorStyles.boldLabel);
             _modelName = EditorGUILayout.TextField("ScriptName", _modelName);
 
             using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_modelName)))

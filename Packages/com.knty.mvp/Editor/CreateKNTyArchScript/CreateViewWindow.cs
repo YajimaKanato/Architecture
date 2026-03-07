@@ -9,15 +9,15 @@ namespace KNTyArch.Editor
     {
         string _viewName;
 
-        [MenuItem("KNTyArch/Create/Script/View",true)]
-        [MenuItem("Assets/Create/KNTyArch/Script/View",true)]
+        [MenuItem("KNTyArch/Create/Script/Core/View",true)]
+        [MenuItem("Assets/Create/KNTyArch/Script/Core/View",true)]
         static bool ValidateOpenCreateView()
         {
             return ScriptCollection.RuntimeNames.Count > 0;
         }
 
-        [MenuItem("KNTyArch/Create/Script/View")]
-        [MenuItem("Assets/Create/KNTyArch/Script/View")]
+        [MenuItem("KNTyArch/Create/Script/Core/View")]
+        [MenuItem("Assets/Create/KNTyArch/Script/Core/View")]
         static void OpenCreateViewFromMenu()
         {
             OpenCreateView();
@@ -36,7 +36,7 @@ namespace KNTyArch.Editor
 
         void ViewWindow()
         {
-            GUILayout.Label("Create", EditorStyles.boldLabel);
+            GUILayout.Label("View", EditorStyles.boldLabel);
             _viewName = EditorGUILayout.TextField("ScriptName", _viewName);
             _runtimeIndex = EditorGUILayout.Popup("Runtime Type", _runtimeIndex, _runtimes);
 

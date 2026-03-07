@@ -11,15 +11,15 @@ namespace KNTyArch.Editor
         string[] _runtimes;
         int _runtimeIndex;
 
-        [MenuItem("KNTyArch/Create/Script/InteractiveView", true)]
-        [MenuItem("Assets/Create/KNTyArch/Script/InteractiveView", true)]
+        [MenuItem("KNTyArch/Create/Script/Core/InteractiveView", true)]
+        [MenuItem("Assets/Create/KNTyArch/Script/Core/InteractiveView", true)]
         static bool ValidateOpenCreateInteractiveView()
         {
             return ScriptCollection.RuntimeNames.Count > 0;
         }
 
-        [MenuItem("KNTyArch/Create/Script/InteractiveView")]
-        [MenuItem("Assets/Create/KNTyArch/Script/InteractiveView")]
+        [MenuItem("KNTyArch/Create/Script/Core/InteractiveView")]
+        [MenuItem("Assets/Create/KNTyArch/Script/Core/InteractiveView")]
         static void OpenCreateInteractiveViewFromMenu()
         {
             OpenCreateInteractiveView();
@@ -33,7 +33,7 @@ namespace KNTyArch.Editor
             window._interactiveViewName = "New";
             window._runtimes = ScriptCollection.RuntimeNames.ToArray();
             window._runtimeIndex = 0;
-            window._createMenu = CreateMenu.Input;
+            window._createMenu = CreateMenu.InteractiveView;
         }
 
         void InteractiveViewWindow()

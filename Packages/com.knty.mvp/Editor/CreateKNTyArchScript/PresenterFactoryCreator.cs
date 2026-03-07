@@ -8,8 +8,8 @@ namespace KNTyArch.Editor
     {
         string _presenterFactoryName;
 
-        [MenuItem("KNTyArch/Create/Script/PresenterFactory")]
-        [MenuItem("Assets/Create/KNTyArch/Script/PresenterFactory")]
+        [MenuItem("KNTyArch/Create/Script/Parts/PresenterFactory")]
+        [MenuItem("Assets/Create/KNTyArch/Script/Parts/PresenterFactory")]
         static void OpenCreatePresenterFactoryFromMenu()
         {
             OpenCreatePresenterFactory();

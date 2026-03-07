@@ -21,15 +21,15 @@ namespace KNTyArch.Editor
         int _interactiveViewIndex;
         ViewType _viewType;
 
-        [MenuItem("KNTyArch/Create/Script/State", true)]
-        [MenuItem("Assets/Create/KNTyArch/Script/State", true)]
+        [MenuItem("KNTyArch/Create/Script/Parts/State", true)]
+        [MenuItem("Assets/Create/KNTyArch/Script/Parts/State", true)]
         static bool ValidateOpenCreatingState()
         {
             return ScriptCollection.ViewNames.Count > 0 || ScriptCollection.InteractiveViewNames.Count > 0;
         }
 
-        [MenuItem("KNTyArch/Create/Script/State")]
-        [MenuItem("Assets/Create/KNTyArch/Script/State")]
+        [MenuItem("KNTyArch/Create/Script/Parts/State")]
+        [MenuItem("Assets/Create/KNTyArch/Script/Parts/State")]
         static void OpenCreateStateFromMenu()
         {
             OpenCreateState();

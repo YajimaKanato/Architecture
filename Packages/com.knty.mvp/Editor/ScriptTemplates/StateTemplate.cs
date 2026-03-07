@@ -8,12 +8,12 @@ namespace KNTyArch.Editor
 $@"using KNTyArch.Runtime;
 using System;
 
-public class {viewName}{className}State : IState<{viewName}View>
+public class {viewName}View{className}State : IState<{viewName}View>
 {{
     readonly {viewName}View _view;
     IDisposable _subscription;
 
-    public {viewName}{className}State({viewName}View view)
+    public {viewName}View{className}State({viewName}View view)
     {{
         _view = view;
     }}
@@ -43,12 +43,12 @@ public class {viewName}{className}State : IState<{viewName}View>
 $@"using KNTyArch.Runtime;
 using System;
 
-public class {interactiveViewName}{className}State : IState<{interactiveViewName}InteractiveView>
+public class {interactiveViewName}IV{className}State : IState<{interactiveViewName}InteractiveView>
 {{
     readonly {interactiveViewName}InteractiveView _view;
     IDisposable _subscription;
 
-    public {interactiveViewName}{className}State({interactiveViewName}InteractiveView view)
+    public {interactiveViewName}IV{className}State({interactiveViewName}InteractiveView view)
     {{
         _view = view;
     }}

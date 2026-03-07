@@ -73,49 +73,6 @@ namespace KNTyArch.Editor
             };
         }
 
-        [MenuItem("KNTyArch/Validation/Views Naming Match Validation")]
-        static void ViewsNameMatchingValidator()
-        {
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/View", "Assets/Scripts/KNTyArch/InteractiveView" });
-            foreach (var guid in guids)
-            {
-                var path = AssetDatabase.GUIDToAssetPath(guid);
-                var mono = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-
-                MatchingValidate(mono);
-            }
-            Debug.Log("Views Naming Match Validation Finished");
-        }
-
-        internal static void NameMatchingValidate(string path)
-        {
-            if (!path.EndsWith(".cs")) return;
-            var mono = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-            MatchingValidate(mono);
-        }
-        //ここ調整
-        internal static void MatchingValidate(MonoScript mono)
-        {
-            if (mono == null) return;
-
-            var type = mono.GetClass();
-            if (type == null) return;
-
-            foreach (var rule in Rules)
-            {
-                if (!MatchRule(type, rule)) continue;
-
-                if (!type.Name.EndsWith(rule.RequiredSuffix))
-                {
-                    Debug.LogError(
-                        $"Invalid Naming : {mono.name}\n" +
-                        $"ScriptName Deriving {rule.TypeName} must end with \"{rule.RequiredSuffix}\"",
-                        mono
-                    );
-                }
-            }
-        }
-
         static bool IsDerivedFrom(Type type, string baseName)
         {
             var baseType = type.BaseType;
