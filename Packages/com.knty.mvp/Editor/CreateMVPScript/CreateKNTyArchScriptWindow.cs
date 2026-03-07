@@ -37,7 +37,7 @@ namespace KNTyArch.Editor
                     ViewWindow();
                     break;
                 case CreateMenu.Input:
-                    InputWindow();
+                    InteractiveViewWindow();
                     break;
                 case CreateMenu.State:
                     StateWindow();

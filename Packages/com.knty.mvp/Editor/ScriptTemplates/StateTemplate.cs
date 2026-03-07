@@ -4,22 +4,56 @@ namespace KNTyArch.Editor
 {
     internal static class StateTemplate
     {
-        internal static string State(string className, string viewName) =>
+        internal static string ViewState(string className, string viewName) =>
 $@"using KNTyArch.Runtime;
 using System;
 
-public class {className}State : IState<{viewName}View>
+public class {viewName}{className}State : IState<{viewName}View>
 {{
     readonly {viewName}View _view;
     IDisposable _subscription;
 
-    public {className}State({viewName}View view)
+    public {viewName}{className}State({viewName}View view)
     {{
         _view = view;
-        _storage = storage;
     }}
 
     public bool CanExit(IState<{viewName}View> newState)
+    {{
+        throw new System.NotImplementedException();
+    }}
+
+    public void Enter()
+    {{
+        //_subscription = _view.EventHub.Subscribe<>();
+    }}
+
+    public void Execute()
+    {{
+        throw new System.NotImplementedException();
+    }}
+
+    public void Exit()
+    {{
+        _subscription?.Dispose();
+    }}
+}}";
+
+        internal static string InteractiveViewState(string className, string interactiveViewName) =>
+$@"using KNTyArch.Runtime;
+using System;
+
+public class {interactiveViewName}{className}State : IState<{interactiveViewName}InteractiveView>
+{{
+    readonly {interactiveViewName}InteractiveView _view;
+    IDisposable _subscription;
+
+    public {interactiveViewName}{className}State({interactiveViewName}InteractiveView view)
+    {{
+        _view = view;
+    }}
+
+    public bool CanExit(IState<{interactiveViewName}InteractiveView> newState)
     {{
         throw new System.NotImplementedException();
     }}

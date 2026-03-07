@@ -84,21 +84,30 @@ namespace KNTyArch.Editor
             CreateScript(path, $"{className}View.cs", ViewTemplate.View(className, runtimeName));
         }
 
-        internal static void CreateInput(string className, string runtimeName)
+        internal static void CreateInteractiveView(string className, string runtimeName)
         {
             var root = EnsureKNTyArchRootFolder();
-            var path = EnsureFolder(root, "Input");
+            var path = EnsureFolder(root, "InteractiveView");
 
-            CreateScript(path, $"{className}Input.cs", InputTemplate.Input(className, runtimeName));
+            CreateScript(path, $"{className}InteractiveView.cs", InteractiveViewTemplate.InteractiveView(className, runtimeName));
         }
 
-        internal static void CreateState(string className, string viewName)
+        internal static void CreateViewState(string className, string viewName)
         {
             var root = EnsureKNTyArchRootFolder();
             root = EnsureFolder(root, "State");
-            var path = EnsureFolder(root, $"{viewName}View");
+            var path = EnsureFolder(root, $"{viewName}State_V");
 
-            CreateScript(path, $"{className}State.cs", StateTemplate.State(className, viewName));
+            CreateScript(path, $"{viewName}{className}State.cs", StateTemplate.ViewState(className, viewName));
+        }
+
+        internal static void CreateInteractiveViewState(string className, string interactiveViewName)
+        {
+            var root = EnsureKNTyArchRootFolder();
+            root = EnsureFolder(root, "State");
+            var path = EnsureFolder(root, $"{interactiveViewName}State_IV");
+
+            CreateScript(path, $"{interactiveViewName}{className}State.cs", StateTemplate.InteractiveViewState(className, interactiveViewName));
         }
 
         internal static void CreatePresenterFactory(string className)

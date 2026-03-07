@@ -7,42 +7,42 @@ namespace KNTyArch.Editor
 {
     internal partial class CreateKNTyArchScriptWindow
     {
-        string _inputName;
+        string _interactiveViewName;
         string[] _runtimes;
         int _runtimeIndex;
 
-        [MenuItem("KNTyArch/Create/Script/Input", true)]
-        [MenuItem("Assets/Create/KNTyArch/Script/Input", true)]
-        static bool ValidateOpenCreateInput()
+        [MenuItem("KNTyArch/Create/Script/InteractiveView", true)]
+        [MenuItem("Assets/Create/KNTyArch/Script/InteractiveView", true)]
+        static bool ValidateOpenCreateInteractiveView()
         {
             return ScriptCollection.RuntimeNames.Count > 0;
         }
 
-        [MenuItem("KNTyArch/Create/Script/Input")]
-        [MenuItem("Assets/Create/KNTyArch/Script/Input")]
-        static void OpenCreateInputFromMenu()
+        [MenuItem("KNTyArch/Create/Script/InteractiveView")]
+        [MenuItem("Assets/Create/KNTyArch/Script/InteractiveView")]
+        static void OpenCreateInteractiveViewFromMenu()
         {
-            OpenCreateInput();
+            OpenCreateInteractiveView();
         }
 
-        static void OpenCreateInput()
+        static void OpenCreateInteractiveView()
         {
-            var window = GetWindow<CreateKNTyArchScriptWindow>("Create Input");
+            var window = GetWindow<CreateKNTyArchScriptWindow>("Create InteractiveView");
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
-            window._inputName = "New";
+            window._interactiveViewName = "New";
             window._runtimes = ScriptCollection.RuntimeNames.ToArray();
             window._runtimeIndex = 0;
             window._createMenu = CreateMenu.Input;
         }
 
-        void InputWindow()
+        void InteractiveViewWindow()
         {
-            GUILayout.Label("Input", EditorStyles.boldLabel);
-            _inputName = EditorGUILayout.TextField("ScriptName", _inputName);
+            GUILayout.Label("InteractiveView", EditorStyles.boldLabel);
+            _interactiveViewName = EditorGUILayout.TextField("ScriptName", _interactiveViewName);
             _runtimeIndex = EditorGUILayout.Popup("Runtime Type", _runtimeIndex, _runtimes);
 
-            using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_inputName)))
+            using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_interactiveViewName)))
             {
                 _isFinished = GUILayout.Button("Create");
                 var e = Event.current;
@@ -55,7 +55,7 @@ namespace KNTyArch.Editor
                 if (_isFinished)
                 {
                     var runtimeName = _runtimes[_runtimeIndex].Replace("Runtime", "");
-                    CreateKNTyArchScript.CreateInput(_inputName, runtimeName);
+                    CreateKNTyArchScript.CreateInteractiveView(_interactiveViewName, runtimeName);
                 }
             }
         }

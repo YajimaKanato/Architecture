@@ -26,17 +26,17 @@ namespace KNTyArch.Runtime
             _presenterFactory = new PresenterFactoryStateMachine();
             SceneManager.sceneLoaded += OnSceneLoaded;
 
-            var inputs = FindObjectsByType<InputBase>(FindObjectsSortMode.None);
+            var inputs = FindObjectsByType<InteractiveViewBase>(FindObjectsSortMode.None);
             foreach (var input in inputs)
             {
-                RuntimeStorage.TryRegister(input.ModelType(), input.ID);
-                ViewDataStorage.TryRegister(input.ModelType(), input.ID);
+                RuntimeStorage.TryRegister(input.RuntimeType(), input.ID);
+                ViewDataStorage.TryRegister(input.RuntimeType(), input.ID);
             }
 
             var views = FindObjectsByType<ViewBase>(FindObjectsSortMode.None);
             foreach (var view in views)
             {
-                view.Initialize();
+                view.SubscribeEvent();
             }
         }
 

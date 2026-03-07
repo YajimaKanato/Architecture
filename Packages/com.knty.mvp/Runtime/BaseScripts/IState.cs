@@ -2,7 +2,7 @@ namespace KNTyArch.Runtime
 {
     /// <summary>対応するビューの状態管理をするクラスに継承するインターフェース</summary>
     /// <typeparam name="TView">ビューの種類</typeparam>
-    public interface IState<TView> where TView : ViewBase
+    public interface IState<TView> where TView : IView
     {
         /// <summary>
         /// 現在の状態を抜けることができるかを判定するメソッド

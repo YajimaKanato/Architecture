@@ -2,25 +2,22 @@
 
 namespace KNTyArch.Editor
 {
-    internal static class ViewTemplate
+    internal static class InteractiveViewTemplate
     {
-        internal static string View(string name, string runtimeName) =>
+        internal static string InteractiveView(string className, string runtimeName) =>
 $@"using KNTyArch.Runtime;
 using UnityEngine;
 
-public class {name}View : ViewBase<{runtimeName}Runtime>
+public class {className}InteractiveView : InteractiveViewBase<{runtimeName}Runtime>
 {{
-    StateMachine<{name}View> _stateMachine = new();
-    IState<{name}View>[] _stateCache;
-
     private void Start()
     {{
-        
+            
     }}
 
     private void Update()
     {{
-        _stateMachine.Update();
+            
     }}
 
     public override void SubscribeEvent()
