@@ -6,6 +6,7 @@ namespace KNTyArch.Runtime
     public static class EventHub
     {
         static readonly Dictionary<Type, List<Delegate>> _subscribers = new();
+        static readonly Dictionary<object, List<IDisposable>> _ownerMap = new();
 
         public static void Publish<TEvent>(TEvent e) where TEvent : struct, IToken
         {
@@ -19,7 +20,7 @@ namespace KNTyArch.Runtime
             }
         }
 
-        public static IDisposable Subscribe<TEvent>(Action<TEvent> handler) where TEvent : struct, IToken
+        public static IDisposable Subscribe<TEvent>(object owner, Action<TEvent> handler) where TEvent : struct, IToken
         {
             var type = typeof(TEvent);
             if (!_subscribers.TryGetValue(type, out var list))
@@ -30,7 +31,7 @@ namespace KNTyArch.Runtime
 
             list.Add(handler);
 
-            return new Subscription(() =>
+            var subscription = new Subscription(() =>
             {
                 if (_subscribers.TryGetValue(type, out var l))
                 {
@@ -39,11 +40,31 @@ namespace KNTyArch.Runtime
                         _subscribers.Remove(type);
                 }
             });
+            if (!_ownerMap.TryGetValue(owner, out var map))
+            {
+                map = new List<IDisposable>();
+                _ownerMap[owner] = map;
+            }
+
+            map.Add(subscription);
+
+            return subscription;
+        }
+
+        public static void Unsubscribe(object owner)
+        {
+            if (!_ownerMap.TryGetValue(owner, out var map)) return;
+            foreach (var subscription in map)
+            {
+                subscription.Dispose();
+            }
+            _ownerMap.Remove(owner);
         }
 
         public static void Clear()
         {
             _subscribers.Clear();
+            _ownerMap.Clear();
         }
 
         public static int GetSubscriberCount<TEvent>() where TEvent : struct, IToken
