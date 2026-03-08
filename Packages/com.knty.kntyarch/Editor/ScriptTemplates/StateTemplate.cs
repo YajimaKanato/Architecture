@@ -35,7 +35,7 @@ public class {viewName}View{className}State : IState<{viewName}View>
 
     public void Exit()
     {{
-        _subscription?.Dispose();
+        EventHub.Unsubscribe(this);
     }}
 }}";
 

@@ -12,7 +12,7 @@ public class {name}Presenter : PresenterBase
 {{
     public override void Initialize()
     {{
-
+        throw new NotImplementedException();
     }}
 
     public override void Dispose()
@@ -20,9 +20,14 @@ public class {name}Presenter : PresenterBase
         throw new NotImplementedException();
     }}
 
-    protected override void SubscribeInputHub()
+    protected override void SubscribeEvent()
     {{
         throw new NotImplementedException();
+    }}
+
+    protected override void Unsubscribe()
+    {{
+        EventHub.Unsubscribe(this);
     }}
 }}";
     }

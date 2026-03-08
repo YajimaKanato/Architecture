@@ -27,6 +27,11 @@ public class {name}View : ViewBase<{runtimeName}Runtime>
     {{
         throw new System.NotImplementedException();
     }}
+
+    private void OnDestroy()
+    {{
+        EventHub.Unsubscribe(this);
+    }}
 }}";
     }
 }

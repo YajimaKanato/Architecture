@@ -24,6 +24,11 @@ public class {className}InteractiveView : InteractiveViewBase<{runtimeName}Runti
     {{
         throw new System.NotImplementedException();
     }}
+
+    private void OnDestroy()
+    {{
+        EventHub.Unsubscribe(this);
+    }}
 }}";
     }
 }
