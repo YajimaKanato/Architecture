@@ -17,6 +17,6 @@ namespace KNTyArch.Runtime
     public abstract class InteractiveViewBase<TDefinition> : InteractiveViewBase where TDefinition : DefinitionBase
     {
         /// <summary>Definitionに対応したHandle</summary>
-        protected ModelHandle<TDefinition> _definitionHandel;
+        protected ModelHandle<TDefinition> _definitionHandle;
     }
 }
