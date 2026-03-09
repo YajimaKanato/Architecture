@@ -22,7 +22,7 @@ namespace KNTyArch.Editor
         [MenuItem("KNTyArch/Validation/Script Naming Validation")]
         static void ScriptNamingValidator()
         {
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts" });
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch" });
             foreach (var guid in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
