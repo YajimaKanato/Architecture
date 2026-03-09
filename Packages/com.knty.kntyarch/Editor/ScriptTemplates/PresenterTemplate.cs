@@ -25,7 +25,7 @@ public class {name}Presenter : PresenterBase
         throw new NotImplementedException();
     }}
 
-    protected override void Unsubscribe()
+    protected override void UnsubscribeEvent()
     {{
         EventHub.Unsubscribe(this);
     }}

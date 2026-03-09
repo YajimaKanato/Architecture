@@ -29,8 +29,7 @@ namespace KNTyArch.Runtime
             var inputs = FindObjectsByType<InteractiveViewBase>(FindObjectsSortMode.None);
             foreach (var input in inputs)
             {
-                RuntimeStorage.TryRegister(input.RuntimeType(), input.ID);
-                ViewDataStorage.TryRegister(input.RuntimeType(), input.ID);
+                input.SubscribeEvent();
             }
 
             var views = FindObjectsByType<ViewBase>(FindObjectsSortMode.None);

@@ -31,7 +31,7 @@ public class {name}Definition : DefinitionBase<{name}Runtime, {name}ViewData>
     [MenuItem(""Assets/Create/KNTyArch/Asset/Models/{name}Definition"")]
     static void CreateDefinition()
     {{
-        ModelAssetCreator.CreateModelAsset<{name}Definition>();
+        DefinitionAssetCreator.CreateModelAsset<{name}Definition>();
     }}
 #endif
 }}";

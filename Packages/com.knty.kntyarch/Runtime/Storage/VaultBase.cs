@@ -5,19 +5,19 @@ namespace KNTyArch.Runtime
 {
     internal sealed class VaultBase<T> : IDisposable where T : class, IDisposable
     {
-        readonly Dictionary<string, T> _vault = new();
+        readonly Dictionary<int, T> _vault = new();
 
-        internal bool TryRegister(string id, T model)
+        internal bool TryRegister(int id, T model)
         {
             return _vault.TryAdd(id, model);
         }
 
-        internal bool TryGetModel(string id, out T model)
+        internal bool TryGetModel(int id, out T model)
         {
             return _vault.TryGetValue(id, out model);
         }
 
-        internal bool TryUnregister(string id)
+        internal bool TryUnregister(int id)
         {
             if (!_vault.TryGetValue(id, out T model)) return false;
             model.Dispose();

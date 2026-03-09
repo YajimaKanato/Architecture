@@ -13,7 +13,7 @@ namespace KNTyArch.Editor
         [MenuItem("Assets/Create/KNTyArch/Script/Core/View",true)]
         static bool ValidateOpenCreateView()
         {
-            return ScriptCollection.RuntimeNames.Count > 0;
+            return ScriptCollection.DefinitionNames.Count > 0;
         }
 
         [MenuItem("KNTyArch/Create/Script/Core/View")]
@@ -29,8 +29,8 @@ namespace KNTyArch.Editor
             Vector2 windowSize = new Vector2(350, 100);
             window.maxSize = window.minSize = windowSize;
             window._viewName = "New";
-            window._runtimes = ScriptCollection.RuntimeNames.ToArray();
-            window._runtimeIndex = 0;
+            window._definitions = ScriptCollection.DefinitionNames.ToArray();
+            window._definitionIndex = 0;
             window._createMenu = CreateMenu.View;
         }
 
@@ -38,7 +38,7 @@ namespace KNTyArch.Editor
         {
             GUILayout.Label("View", EditorStyles.boldLabel);
             _viewName = EditorGUILayout.TextField("ScriptName", _viewName);
-            _runtimeIndex = EditorGUILayout.Popup("Runtime Type", _runtimeIndex, _runtimes);
+            _definitionIndex = EditorGUILayout.Popup("Definition Type", _definitionIndex, _definitions);
 
             using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(_viewName)))
             {
@@ -53,7 +53,7 @@ namespace KNTyArch.Editor
                 }
                 if (_isFinished)
                 {
-                    var runtime = _runtimes[_runtimeIndex].Replace("Runtime", "");
+                    var runtime = _definitions[_definitionIndex].Replace("Definition", "");
                     CreateKNTyArchScript.CreateView(_viewName, runtime);
                 }
             }

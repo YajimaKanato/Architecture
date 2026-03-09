@@ -8,7 +8,7 @@ namespace KNTyArch.Editor
 $@"using KNTyArch.Runtime;
 using UnityEngine;
 
-public class {name}View : ViewBase<{runtimeName}Runtime>
+public class {name}View : ViewBase<{runtimeName}Definition>
 {{
     StateMachine<{name}View> _stateMachine = new();
     IState<{name}View>[] _stateCache;
@@ -21,6 +21,11 @@ public class {name}View : ViewBase<{runtimeName}Runtime>
     private void Update()
     {{
         _stateMachine.Update();
+    }}
+
+    public override void Initialize()
+    {{
+        throw new System.NotImplementedException();
     }}
 
     public override void SubscribeEvent()

@@ -13,8 +13,8 @@ namespace KNTyArch.Editor
             new NamingRule(RuleType.BaseClass, "RuntimeBase", "Runtime"),
             new NamingRule(RuleType.Interface,"IViewData","ViewData"),
             new NamingRule(RuleType.GenericClass, "ViewBase", "View"),
-            new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),
             new NamingRule(RuleType.GenericClass,"InteractiveViewBase","InteractiveView"),
+            new NamingRule(RuleType.BaseClass, "PresenterBase", "Presenter"),
             new NamingRule(RuleType.Interface,"IState","State"),
             new NamingRule(RuleType.Interface,"IToken","Token")
         };
@@ -22,7 +22,7 @@ namespace KNTyArch.Editor
         [MenuItem("KNTyArch/Validation/Script Naming Validation")]
         static void ScriptNamingValidator()
         {
-            var guids = AssetDatabase.FindAssets("t:MonoScript");
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts" });
             foreach (var guid in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);

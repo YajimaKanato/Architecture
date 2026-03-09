@@ -21,8 +21,9 @@ namespace KNTyArch.Editor
                 ScriptNameValidator.NameValidate(path);
             }
 
-            ScriptCollection.CollectRuntimes();
+            ScriptCollection.CollectDefinitions();
             ScriptCollection.CollectView();
+            ScriptCollection.CollectInteractiveView();
         }
     }
 }

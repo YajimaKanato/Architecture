@@ -8,8 +8,11 @@ namespace KNTyArch.Editor
 $@"using KNTyArch.Runtime;
 using UnityEngine;
 
-public class {className}InteractiveView : InteractiveViewBase<{runtimeName}Runtime>
+public class {className}InteractiveView : InteractiveViewBase<{runtimeName}Definition>
 {{
+    StateMachine<{className}InteractiveView> _stateMachine = new();
+    IState<{className}InteractiveView>[] _stateCache;
+
     private void Start()
     {{
             
@@ -18,6 +21,11 @@ public class {className}InteractiveView : InteractiveViewBase<{runtimeName}Runti
     private void Update()
     {{
             
+    }}
+
+    public override void Initialize()
+    {{
+        throw new System.NotImplementedException();
     }}
 
     public override void SubscribeEvent()

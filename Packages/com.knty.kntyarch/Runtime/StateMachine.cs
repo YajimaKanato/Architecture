@@ -1,6 +1,6 @@
 namespace KNTyArch.Runtime
 {
-    public sealed class StateMachine<TView> where TView : ViewBase
+    public sealed class StateMachine<TView> where TView : IView
     {
         IState<TView> _currentState;
 
