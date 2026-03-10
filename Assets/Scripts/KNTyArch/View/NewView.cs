@@ -1,10 +1,10 @@
 using KNTyArch.Runtime;
 using UnityEngine;
 
-public class NewNewView : NewViewBase<NewDefinition>
+public class NewView : ViewBase<NewDefinition>
 {
-    StateMachine<NewNewView> _stateMachine = new();
-    IState<NewNewView>[] _stateCache;
+    StateMachine<NewView> _stateMachine = new();
+    IState<NewView>[] _stateCache;
 
     private void Start()
     {
@@ -19,6 +19,11 @@ public class NewNewView : NewViewBase<NewDefinition>
     public override void Initialize()
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void SetHandleID(int handleID)
+    {
+        _definitionHandle = new ModelHandle<NewDefinition>(handleID);
     }
 
     public override void SubscribeEvent()

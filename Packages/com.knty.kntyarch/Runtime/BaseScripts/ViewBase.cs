@@ -8,6 +8,10 @@ namespace KNTyArch.Runtime
         /// <summary>初期化メソッド</summary>
         public abstract void Initialize();
 
+        /// <summary>ModelHandleの持つIDパラメータを設定するメソッド</summary>
+        /// <param name="handleID">IDとして設定する整数値</param>
+        public abstract void SetHandleID(int handleID);
+
         /// <summary>イベントを購読するメソッド</summary>
         public abstract void SubscribeEvent();
     }

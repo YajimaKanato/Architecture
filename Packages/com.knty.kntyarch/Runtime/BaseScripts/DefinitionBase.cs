@@ -1,19 +1,10 @@
 using UnityEngine;
-using System;
 
 namespace KNTyArch.Runtime
 {
     /// <summary>初期データのベースクラス</summary>
     public abstract class DefinitionBase : ScriptableObject
     {
-        /// <summary>Runtimeのデータ型を返すメソッド</summary>
-        /// <returns>Runtimeのデータ型</returns>
-        public abstract Type GetRuntimeType();
-
-        /// <summary>ViewDataのデータ型を返すメソッド</summary>
-        /// <returns>ViewDataのデータ型</returns>
-        public abstract Type GetViewDataType();
-
         /// <summary>Runtimeを生成するメソッド</summary>
         /// <returns>生成したRuntime</returns>
         public abstract RuntimeBase CreateRuntime();
@@ -28,10 +19,6 @@ namespace KNTyArch.Runtime
     /// <typeparam name="TViewData">ViewDataのデータ型</typeparam>
     public abstract class DefinitionBase<TRuntime, TViewData> : DefinitionBase where TRuntime : RuntimeBase where TViewData : ViewDataBase
     {
-        public sealed override Type GetRuntimeType() => typeof(TRuntime);
-
-        public sealed override Type GetViewDataType() => typeof(TViewData);
-
         public sealed override RuntimeBase CreateRuntime()
         {
             return CreateTypedRuntime();

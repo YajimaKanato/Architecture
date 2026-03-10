@@ -43,6 +43,7 @@ namespace KNTyArch.Editor
                 overwritten = true;
             }
             File.WriteAllText(fullPath, content);
+            AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
             EditorApplication.delayCall += () =>
             {
                 var mono = AssetDatabase.LoadAssetAtPath<MonoScript>(fullPath);
