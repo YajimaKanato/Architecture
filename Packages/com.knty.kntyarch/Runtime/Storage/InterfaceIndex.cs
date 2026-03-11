@@ -33,9 +33,9 @@ namespace KNTyArch.Runtime
         /// <summary>
         /// 指定のインターフェース型のインスタンスをすべて取得するメソッド
         /// </summary>
-        /// <typeparam name="TInterface"></typeparam>
-        /// <param name="list"></param>
-        /// <returns></returns>
+        /// <typeparam name="TInterface">取得したいインターフェースの型</typeparam>
+        /// <param name="list">インターフェースのリスト</param>
+        /// <returns>リストを取得できたかどうか</returns>
         public bool TryGet<TInterface>(out List<TInterface> list) where TInterface : class
         {
             if (_map.TryGetValue(typeof(TInterface), out var l))
@@ -56,9 +56,13 @@ namespace KNTyArch.Runtime
             return false;
         }
 
-        public void Unregister(T runtime)
+        /// <summary>
+        /// データを削除するメソッド
+        /// </summary>
+        /// <param name="model">削除するデータ</param>
+        public void Unregister(T model)
         {
-            var interfaces = runtime.GetType().GetInterfaces();
+            var interfaces = model.GetType().GetInterfaces();
 
             foreach (var iface in interfaces)
             {
@@ -69,6 +73,9 @@ namespace KNTyArch.Runtime
             }
         }
 
+        /// <summary>
+        /// 登録してあるデータをすべて削除するメソッド
+        /// </summary>
         public void Clear()
         {
             _map.Clear();

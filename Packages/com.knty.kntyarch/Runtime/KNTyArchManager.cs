@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace KNTyArch.Runtime
 {
+    /// <summary>デモマネージャークラス</summary>
     public class KNTyArchManager : MonoBehaviour
     {
         [SerializeField] bool _isDDOL = true;
