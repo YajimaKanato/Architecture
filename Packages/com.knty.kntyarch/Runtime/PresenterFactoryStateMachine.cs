@@ -11,7 +11,6 @@ namespace KNTyArch.Runtime
             _factory?.Dispose();
             _factory = factory;
             _factory?.GeneratePresenter();
-
         }
     }
 }

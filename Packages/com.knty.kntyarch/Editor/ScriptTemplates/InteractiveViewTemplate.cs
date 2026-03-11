@@ -20,7 +20,7 @@ public class {className}InteractiveView : InteractiveViewBase<{definitionName}De
 
     private void Update()
     {{
-            
+        _stateMachine.Update();
     }}
 
     public override void Initialize()
@@ -28,17 +28,12 @@ public class {className}InteractiveView : InteractiveViewBase<{definitionName}De
         throw new System.NotImplementedException();
     }}
 
-    public override void SetHandleID(int handleID)
-    {{
-        _definitionHandle = new ModelHandle<{definitionName}Definition>(handleID);
-    }}
-
     public override void SubscribeEvent()
     {{
         throw new System.NotImplementedException();
     }}
 
-    private void OnDestroy()
+    public override void UnsubscribeEvent()
     {{
         EventHub.Unsubscribe(this);
     }}

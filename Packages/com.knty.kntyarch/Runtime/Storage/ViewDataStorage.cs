@@ -3,20 +3,21 @@ using System.Collections.Generic;
 
 namespace KNTyArch.Runtime
 {
+    /// <summary>ViewDataの保管庫</summary>
     public static class ViewDataStorage
     {
-        /// <summary>Definitionのデータ型とその保管場所の対応表</summary>
-        static readonly Dictionary<Type, VaultBase<ViewDataBase>> _storage = new();
+        /// <summary>IDとデータの保管場所の対応表</summary>
+        static readonly Dictionary<int, ViewDataBase> _storage = new();
         /// <summary>Definitionのデータ型とその生成方法の対応表</summary>
         static readonly Dictionary<Type, Func<ViewDataBase>> _viewDataGenerateDict = new();
-        /// <summary>インターフェースとデータの対応表</summary>
+        /// <summary>インターフェースの倉庫</summary>
         static readonly InterfaceIndex<ViewDataBase> _interfaceIndex = new();
 
         /// <summary>
-        /// DefinitionのリストからViewDataの生成方法を受け取り対応表を作成するメソッド
+        /// DefinitionのリストからRuntimeの生成方法を受け取り対応表を作成するメソッド
         /// </summary>
         /// <param name="definitionCollection">Definitionのリスト</param>
-        public static void SetViewDataGenerating(DefinitionCollection definitionCollection)
+        public static void SetRuntimeGenerating(DefinitionCollection definitionCollection)
         {
             var list = definitionCollection.definitionList;
             foreach (var definition in list)
@@ -26,86 +27,67 @@ namespace KNTyArch.Runtime
         }
 
         /// <summary>
-        /// 保管場所を取得または作成するメソッド
+        /// IDとデータを対応させて登録するメソッド
         /// </summary>
-        /// <param name="type">保管場所に対応するデータ型</param>
-        /// <param name="vault">保管場所</param>
-        static void GetOrCreateVault<TDefinition>(ModelHandle<TDefinition> handle, out VaultBase<ViewDataBase> vault)
-            where TDefinition : DefinitionBase
+        /// <param name="handle">ID</param>
+        /// <returns>データを登録できたかどうか</returns>
+        public static bool TryRegister(ModelHandle handle, Type type)
         {
-            var type = typeof(TDefinition);
-            if (!_storage.TryGetValue(type, out vault))
-            {
-                vault = new VaultBase<ViewDataBase>();
-                _storage[type] = vault;
-            }
-        }
-
-        /// <summary>
-        /// 保管場所を取得するメソッド
-        /// </summary>
-        /// <param name="type">保管場所に対応するデータ型</param>
-        /// <param name="vault">保管場所</param>
-        /// <returns>保管場所があるかどうか</returns>
-        static bool TryGetVault<TDefinition>(ModelHandle<TDefinition> handle, out VaultBase<ViewDataBase> vault)
-            where TDefinition : DefinitionBase
-        {
-            var type = typeof(TDefinition);
-            if (_storage.TryGetValue(type, out var v) && v is VaultBase<ViewDataBase> typed)
-            {
-                vault = typed;
-                return true;
-            }
-            vault = null;
-            return false;
-        }
-
-        /// <summary>
-        /// データ型に対応するRuntimeをIDに対して作成するメソッド
-        /// </summary>
-        /// <param name="type">データ型</param>
-        /// <param name="id">ID</param>
-        /// <returns>データ型を作成できたかどうか</returns>
-        public static bool TryRegister<TDefinition>(ModelHandle<TDefinition> handle)
-            where TDefinition : DefinitionBase
-        {
-            if (!_viewDataGenerateDict.TryGetValue(typeof(TDefinition), out var func)) return false;
-            var viewData = func();
-            GetOrCreateVault(handle, out VaultBase<ViewDataBase> vault);
-
-            if (!vault.TryRegister(handle.ID, viewData)) return false;
+            var id = handle.ID;
+            if (!_storage.ContainsKey(id)) return false;
+            var viewData = _viewDataGenerateDict[type]();
+            _storage[id] = viewData;
             _interfaceIndex.Register(viewData);
             return true;
         }
 
-
-        public static bool TryGetModel<TDefinition, TViewData>(ModelHandle<TDefinition> handle, out TViewData viewData)
-            where TDefinition : DefinitionBase where TViewData : ViewDataBase
+        /// <summary>
+        /// IDに対して指定のデータ型インスタンスを取得するメソッド
+        /// </summary>
+        /// <typeparam name="TViewData">取得したいインスタンスのデータ型</typeparam>
+        /// <param name="handle">ID</param>
+        /// <param name="viewData">取得したインスタンス</param>
+        /// <returns>指定のデータ型インスタンスを取得できたかどうか</returns>
+        public static bool TryGetModel<TViewData>(ModelHandle handle, out TViewData viewData)
+            where TViewData : ViewDataBase
         {
+            var id = handle.ID;
             viewData = null;
-            if (!TryGetVault(handle, out var vault)) return false;
-            if (!vault.TryGetModel(handle.ID, out var r)) return false;
+            if (!_storage.TryGetValue(id, out var r)) return false;
             if (r is not TViewData typed) return false;
             viewData = typed;
             return true;
         }
 
-        public static List<TInterface> TryGetInterfaces<TInterface>() where TInterface : class
+        /// <summary>
+        /// 指定のインターフェースを継承しているインスタンスをすべて取得するメソッド
+        /// </summary>
+        /// <typeparam name="TInterface">取得したいインスタンスのデータ型</typeparam>
+        /// <param name="list">取得したインスタンスのリスト</param>
+        /// <returns>取得できたかどうか</returns>
+        public static bool TryGetInterfaces<TInterface>(out List<TInterface> list) where TInterface : class
         {
-            _interfaceIndex.TryGet(out List<TInterface> l);
-            return l;
+            return _interfaceIndex.TryGet(out list);
         }
 
-        public static bool TryUnregister<TDefinition>(ModelHandle<TDefinition> handle)
-            where TDefinition : DefinitionBase
+        /// <summary>
+        /// IDに対応したデータを削除するメソッド
+        /// </summary>
+        /// <param name="handle">ID</param>
+        /// <returns>削除できたかどうか</returns>
+        public static bool TryUnregister(ModelHandle handle)
         {
-            if (!TryGetVault(handle, out VaultBase<ViewDataBase> vault)) return false;
-            if (!vault.TryGetModel(handle.ID, out var viewData)) return false;
+            var id = handle.ID;
+            if (!_storage.ContainsKey(id)) return false;
+            var viewData = _storage[id];
             _interfaceIndex.Unregister(viewData);
-            vault.TryUnregister(handle.ID);
+            _storage.Remove(id);
             return true;
         }
 
+        /// <summary>
+        /// データをすべて削除するメソッド
+        /// </summary>
         public static void Clear()
         {
             foreach (var v in _storage.Values)
@@ -113,7 +95,6 @@ namespace KNTyArch.Runtime
                 (v as IDisposable)?.Dispose();
             }
             _storage.Clear();
-            _viewDataGenerateDict.Clear();
             _interfaceIndex.Clear();
         }
     }

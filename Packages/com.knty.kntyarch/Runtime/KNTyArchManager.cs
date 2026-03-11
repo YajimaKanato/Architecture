@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,23 +7,13 @@ namespace KNTyArch.Runtime
     {
         [SerializeField] bool _isDDOL = true;
         [SerializeField] DefinitionCollection _modelCollection;
-        readonly Dictionary<string, IPresenterFactory> _presenterFactoryDict = new()
-        {
-
-        };
-        PresenterFactoryStateMachine _presenterFactory;
 
         static KNTyArchManager _instance;
         public static KNTyArchManager Instance => _instance;
 
         public void Initialize()
         {
-            foreach (var presenterFactory in _presenterFactoryDict.Values)
-            {
-                presenterFactory.GeneratePresenter();
-            }
-            _presenterFactory = new PresenterFactoryStateMachine();
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            //SceneManager.sceneLoaded += OnSceneLoaded;
 
             var inputs = FindObjectsByType<InteractiveViewBase>(FindObjectsSortMode.None);
             foreach (var input in inputs)
@@ -67,7 +56,7 @@ namespace KNTyArch.Runtime
 
         void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (_presenterFactoryDict.TryGetValue(scene.name, out var presenterFactory)) _presenterFactory.ChangeFactory(presenterFactory);
+
         }
     }
 }

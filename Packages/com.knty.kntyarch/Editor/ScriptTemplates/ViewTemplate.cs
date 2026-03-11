@@ -1,16 +1,14 @@
 #if UNITY_EDITOR
 
-using KNTyArch.Runtime;
-
 namespace KNTyArch.Editor
 {
     internal static class ViewTemplate
     {
-        internal static string View(string name, string definitionName) =>
+        internal static string View(string name) =>
 $@"using KNTyArch.Runtime;
 using UnityEngine;
 
-public class {name}View : ViewBase<{definitionName}Definition>
+public class {name}View : ViewBase
 {{
     StateMachine<{name}View> _stateMachine = new();
     IState<{name}View>[] _stateCache;
@@ -30,17 +28,12 @@ public class {name}View : ViewBase<{definitionName}Definition>
         throw new System.NotImplementedException();
     }}
 
-    public override void SetHandleID(int handleID)
-    {{
-        _definitionHandle = new ModelHandle<{definitionName}Definition>(handleID);
-    }}
-
     public override void SubscribeEvent()
     {{
         throw new System.NotImplementedException();
     }}
 
-    private void OnDestroy()
+    public override void UnsubscribeEvent()
     {{
         EventHub.Unsubscribe(this);
     }}
