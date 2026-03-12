@@ -6,13 +6,13 @@ namespace KNTyArch.Runtime
     public abstract class InteractiveViewBase : MonoBehaviour, IView
     {
         /// <summary>データのHandle</summary>
-        protected ModelHandle _definitionHandle;
+        protected ModelHandle _modelHandle;
 
         public abstract void Initialize();
 
         public void SetHandleID(int handleID)
         {
-            _definitionHandle = new ModelHandle(handleID);
+            _modelHandle = new ModelHandle(handleID);
         }
 
         /// <summary>ライフサイクルを開始するメソッド</summary>
@@ -32,16 +32,16 @@ namespace KNTyArch.Runtime
     {
         public override sealed void StartLifeCycle()
         {
-            if (_definitionHandle == null) throw new System.NullReferenceException(nameof(_definitionHandle));
-            RuntimeStorage.TryRegister(_definitionHandle, typeof(TDefinition));
-            ViewDataStorage.TryRegister(_definitionHandle, typeof(TDefinition));
+            if (_modelHandle == null) throw new System.NullReferenceException(nameof(_modelHandle));
+            RuntimeStorage.TryRegister(_modelHandle, typeof(TDefinition));
+            ViewDataStorage.TryRegister(_modelHandle, typeof(TDefinition));
         }
 
         public override sealed void StopLifeCycle()
         {
-            if (_definitionHandle == null) throw new System.NullReferenceException(nameof(_definitionHandle));
-            RuntimeStorage.TryUnregister(_definitionHandle);
-            ViewDataStorage.TryUnregister(_definitionHandle);
+            if (_modelHandle == null) throw new System.NullReferenceException(nameof(_modelHandle));
+            RuntimeStorage.TryUnregister(_modelHandle);
+            ViewDataStorage.TryUnregister(_modelHandle);
         }
     }
 }

@@ -6,13 +6,13 @@ namespace KNTyArch.Runtime
     public abstract class ViewBase : MonoBehaviour, IView
     {
         /// <summary>Definitionに対応したHandle</summary>
-        protected ModelHandle _definitionHandle;
+        protected ModelHandle _modelHandle;
 
         public abstract void Initialize();
 
         public void SetHandleID(int handleID)
         {
-            _definitionHandle = new ModelHandle(handleID);
+            _modelHandle = new ModelHandle(handleID);
         }
 
         public abstract void SubscribeEvent();
