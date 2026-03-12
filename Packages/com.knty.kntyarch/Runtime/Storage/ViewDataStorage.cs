@@ -17,7 +17,7 @@ namespace KNTyArch.Runtime
         /// DefinitionのリストからRuntimeの生成方法を受け取り対応表を作成するメソッド
         /// </summary>
         /// <param name="definitionCollection">Definitionのリスト</param>
-        public static void SetRuntimeGenerating(DefinitionCollection definitionCollection)
+        public static void SetModelGenerating(DefinitionCollection definitionCollection)
         {
             var list = definitionCollection.definitionList;
             foreach (var definition in list)
