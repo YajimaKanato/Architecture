@@ -11,15 +11,15 @@ namespace KNTyArch.Editor
         string[] _definitions;
         int _definitionIndex;
 
-        [MenuItem("KNTyArch/Create/Script/Core/InteractiveView", true)]
-        [MenuItem("Assets/Create/KNTyArch/Script/Core/InteractiveView", true)]
+        //[MenuItem("KNTyArch/Create/Script/Core/InteractiveView", true)]
+        //[MenuItem("Assets/Create/KNTyArch/Script/Core/InteractiveView", true)]
         static bool ValidateOpenCreateInteractiveView()
         {
             return ScriptCollection.DefinitionNames.Count > 0;
         }
 
-        [MenuItem("KNTyArch/Create/Script/Core/InteractiveView")]
-        [MenuItem("Assets/Create/KNTyArch/Script/Core/InteractiveView")]
+        //[MenuItem("KNTyArch/Create/Script/Core/InteractiveView")]
+        //[MenuItem("Assets/Create/KNTyArch/Script/Core/InteractiveView")]
         static void OpenCreateInteractiveViewFromMenu()
         {
             OpenCreateInteractiveView();

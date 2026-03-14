@@ -13,7 +13,7 @@ namespace KNTyArch.Editor
         internal static IReadOnlyList<string> DefinitionNames => _definitionNames;
         internal static IReadOnlyList<string> RuntimeNames => _runtimeNames;
 
-        [InitializeOnLoadMethod]
+        //[InitializeOnLoadMethod]
         internal static void CollectDefinitions()
         {
             _definitionNames.Clear();

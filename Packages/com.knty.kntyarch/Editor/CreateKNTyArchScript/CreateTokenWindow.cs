@@ -7,8 +7,10 @@ namespace KNTyArch.Editor
     {
         string _tokenName;
 
-        [MenuItem("KNTyArch/Create/Script/Parts/Token")]
-        [MenuItem("Assets/Create/KNTyArch/Script/Parts/Token")]
+        //[MenuItem("KNTyArch/Create/Script/Parts/Token")]
+        //[MenuItem("Assets/Create/KNTyArch/Script/Parts/Token")]
+        [MenuItem("KNTyArch/Create/Token")]
+        [MenuItem("Assets/Create/KNTyArch/Token")]
         static void OpenCreateTokenFromMenu()
         {
             OpenCreateToken();

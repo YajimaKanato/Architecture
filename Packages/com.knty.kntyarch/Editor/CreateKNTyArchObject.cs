@@ -7,8 +7,8 @@ namespace KNTyArch.Editor
 {
     internal static class CreateKNTyArchObject
     {
-        [MenuItem("KNTyArch/Create/GameObject/KNTyArch Manager")]
-        [MenuItem("GameObject/KNTyArch/KNTyArch Manager")]
+        //[MenuItem("KNTyArch/Create/GameObject/KNTyArch Manager")]
+        //[MenuItem("GameObject/KNTyArch/KNTyArch Manager")]
         static void CreateKNTyArchManager(MenuCommand command)
         {
             if (Object.FindAnyObjectByType<KNTyArchManager>() != null)

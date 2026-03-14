@@ -16,11 +16,7 @@ namespace KNTyArch.Runtime
         {
             //SceneManager.sceneLoaded += OnSceneLoaded;
 
-            var inputs = FindObjectsByType<InteractiveViewBase>(FindObjectsSortMode.None);
-            foreach (var input in inputs)
-            {
-                input.SubscribeEvent();
-            }
+            
 
             var views = FindObjectsByType<ViewBase>(FindObjectsSortMode.None);
             foreach (var view in views)

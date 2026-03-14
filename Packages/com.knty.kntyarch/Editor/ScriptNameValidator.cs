@@ -19,7 +19,7 @@ namespace KNTyArch.Editor
             new NamingRule(RuleType.Interface,"IToken","Token")
         };
 
-        [MenuItem("KNTyArch/Validation/Script Naming Validation")]
+        //[MenuItem("KNTyArch/Validation/Script Naming Validation")]
         static void ScriptNamingValidator()
         {
             var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch" });

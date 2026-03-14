@@ -14,7 +14,8 @@ namespace KNTyArch.Editor
             View,
             InteractiveView,
             State,
-            Token
+            Token,
+            SceneObject
         }
 
         CreateMenu _createMenu = CreateMenu.None;
@@ -44,6 +45,9 @@ namespace KNTyArch.Editor
                     break;
                 case CreateMenu.Token:
                     TokenWindow();
+                    break;
+                case CreateMenu.SceneObject:
+                    SceneObjectWindow();
                     break;
             }
 

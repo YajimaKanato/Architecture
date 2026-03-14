@@ -8,26 +8,16 @@ namespace KNTyArch.Editor
 $@"using KNTyArch.Runtime;
 using System;
 
-public class {name}Presenter : PresenterBase
+public class {name}Presenter : IPresenter
 {{
-    public override void Initialize()
-    {{
-        throw new NotImplementedException();
-    }}
+    {name}InteractiveView _{name.ToLower()}IV;
+    {name}Runtime _{name.ToLower()}Runtime;
 
-    public override void Dispose()
+    public {name}Presenter({name}InteractiveView {name.ToLower()}IV, {name}Definition {name.ToLower()}Definition)
     {{
-        throw new NotImplementedException();
-    }}
-
-    protected override void SubscribeEvent()
-    {{
-        throw new NotImplementedException();
-    }}
-
-    protected override void UnsubscribeEvent()
-    {{
-        EventHub.Unsubscribe(this);
+        _{name.ToLower()}IV = {name.ToLower()}IV;
+        _{name.ToLower()}Runtime = ({name}Runtime){name.ToLower()}Definition.CreateRuntime();
+        _{name.ToLower()}IV.BindPresenter(this);
     }}
 }}";
     }

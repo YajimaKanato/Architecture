@@ -5,12 +5,10 @@ namespace KNTyArch.Editor
     internal static class DefinitionTemplate
     {
         internal static string Definition(string name) =>
-$@"#if UNITY_EDITOR
-using UnityEditor;
-#endif
-using KNTyArch.Runtime;
+$@"using KNTyArch.Runtime;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = ""{name}Definition"", menuName = ""Definition/{name}Definition"")]
 public class {name}Definition : DefinitionBase<{name}Runtime, {name}ViewData>
 {{
 
@@ -25,15 +23,6 @@ public class {name}Definition : DefinitionBase<{name}Runtime, {name}ViewData>
         return new {name}ViewData(this);
     }}
     #endregion
-
-#if UNITY_EDITOR
-
-    [MenuItem(""Assets/Create/KNTyArch/Asset/Models/{name}Definition"")]
-    static void CreateDefinition()
-    {{
-        DefinitionAssetCreator.CreateModelAsset<{name}Definition>();
-    }}
-#endif
 }}";
     }
 }

@@ -8,8 +8,8 @@ namespace KNTyArch.Editor
     {
         string _viewName;
 
-        [MenuItem("KNTyArch/Create/Script/Core/View")]
-        [MenuItem("Assets/Create/KNTyArch/Script/Core/View")]
+        //[MenuItem("KNTyArch/Create/Script/Core/View")]
+        //[MenuItem("Assets/Create/KNTyArch/Script/Core/View")]
         static void OpenCreateViewFromMenu()
         {
             OpenCreateView();

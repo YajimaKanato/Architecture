@@ -8,8 +8,8 @@ namespace KNTyArch.Editor
     {
         string _modelName;
 
-        [MenuItem("KNTyArch/Create/Script/Core/Models")]
-        [MenuItem("Assets/Create/KNTyArch/Script/Core/Models")]
+        //[MenuItem("KNTyArch/Create/Script/Core/Models")]
+        //[MenuItem("Assets/Create/KNTyArch/Script/Core/Models")]
         static void OpenCreateModelsFromMenu()
         {
             OpenCreateModels();

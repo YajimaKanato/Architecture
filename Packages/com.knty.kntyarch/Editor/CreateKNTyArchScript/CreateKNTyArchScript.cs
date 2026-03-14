@@ -56,6 +56,19 @@ namespace KNTyArch.Editor
             };
         }
 
+        internal static void CreateSceneObjectScripts(string name)
+        {
+            var root = EnsureKNTyArchRootFolder();
+            var path = EnsureFolder(root, name);
+
+            CreateScript(path, $"{name}Definition.cs", DefinitionTemplate.Definition(name));
+            CreateScript(path, $"{name}Runtime.cs", RuntimeTemplate.Runtime(name));
+            CreateScript(path, $"{name}ViewData.cs", ViewDataTemplate.ViewData(name));
+            CreateScript(path, $"{name}Presenter.cs", PresenterTemplate.Presenter(name));
+            CreateScript(path, $"{name}InteractiveView.cs", InteractiveViewTemplate.InteractiveView(name));
+            CreateScript(path, $"{name}Factory.cs", ObjectFactoryTemplate.ObjectFactory(name));
+        }
+
         internal static void CreateModels(string className)
         {
             var root = EnsureKNTyArchRootFolder();
@@ -90,7 +103,7 @@ namespace KNTyArch.Editor
             var root = EnsureKNTyArchRootFolder();
             var path = EnsureFolder(root, "InteractiveView");
 
-            CreateScript(path, $"{className}InteractiveView.cs", InteractiveViewTemplate.InteractiveView(className, runtimeName));
+            CreateScript(path, $"{className}InteractiveView.cs", InteractiveViewTemplate.InteractiveView(className));
         }
 
         internal static void CreateViewState(string className, string viewName)

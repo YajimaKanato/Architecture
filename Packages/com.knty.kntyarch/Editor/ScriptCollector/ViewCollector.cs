@@ -13,7 +13,7 @@ namespace KNTyArch.Editor
         internal static IReadOnlyList<string> ViewNames => _viewNames;
         internal static IReadOnlyList<string> InteractiveViewNames => _interactiveViewNams;
 
-        [InitializeOnLoadMethod]
+        //[InitializeOnLoadMethod]
         internal static void CollectView()
         {
             _viewNames.Clear();
@@ -32,11 +32,11 @@ namespace KNTyArch.Editor
             }
         }
 
-        [InitializeOnLoadMethod]
+        //[InitializeOnLoadMethod]
         internal static void CollectInteractiveView()
         {
             _interactiveViewNams.Clear();
-            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch/InteractiveView" });
+            var guids = AssetDatabase.FindAssets("t:MonoScript", new string[] { "Assets/Scripts/KNTyArch" });
 
             foreach (var guid in guids)
             {

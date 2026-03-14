@@ -4,14 +4,15 @@ namespace KNTyArch.Editor
 {
     internal static class InteractiveViewTemplate
     {
-        internal static string InteractiveView(string className, string definitionName) =>
+        internal static string InteractiveView(string className) =>
 $@"using KNTyArch.Runtime;
 using UnityEngine;
 
-public class {className}InteractiveView : InteractiveViewBase<{definitionName}Definition>
+public class {className}InteractiveView : InteractiveViewBase
 {{
     StateMachine<{className}InteractiveView> _stateMachine = new();
     IState<{className}InteractiveView>[] _stateCache;
+    {className}Presenter _{className.ToLower()}Presenter;
 
     private void Start()
     {{
@@ -23,9 +24,9 @@ public class {className}InteractiveView : InteractiveViewBase<{definitionName}De
         _stateMachine.Update();
     }}
 
-    public override void Initialize()
+    public override void BindPresenter(IPresenter presenter)
     {{
-        throw new System.NotImplementedException();
+        _{className.ToLower()}Presenter = ({className}Presenter)presenter;
     }}
 
     public override void SubscribeEvent()

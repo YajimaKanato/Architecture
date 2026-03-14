@@ -11,19 +11,19 @@ namespace KNTyArch.Editor
             string[] movedAssets,
             string[] movedFromAssetsPath)
         {
-            foreach (var path in importedAssets)
-            {
-                ScriptNameValidator.NameValidate(path);
-            }
+            //foreach (var path in importedAssets)
+            //{
+            //    ScriptNameValidator.NameValidate(path);
+            //}
 
-            foreach (var path in movedAssets)
-            {
-                ScriptNameValidator.NameValidate(path);
-            }
+            //foreach (var path in movedAssets)
+            //{
+            //    ScriptNameValidator.NameValidate(path);
+            //}
 
-            ScriptCollection.CollectDefinitions();
-            ScriptCollection.CollectView();
-            ScriptCollection.CollectInteractiveView();
+            //ScriptCollection.CollectDefinitions();
+            //ScriptCollection.CollectView();
+            //ScriptCollection.CollectInteractiveView();
         }
     }
 }

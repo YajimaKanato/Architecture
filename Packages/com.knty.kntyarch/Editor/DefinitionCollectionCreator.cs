@@ -8,8 +8,8 @@ namespace KNTyArch.Editor
 {
     internal static class DefinitionCollectionCreator
     {
-        [MenuItem("KNTyArch/Create/Asset/DefinitionCollection")]
-        [MenuItem("Assets/Create/KNTyArch/Asset/DefinitionCollection")]
+        //[MenuItem("KNTyArch/Create/Asset/DefinitionCollection")]
+        //[MenuItem("Assets/Create/KNTyArch/Asset/DefinitionCollection")]
         static void Create()
         {
             var collection = ScriptableObject.CreateInstance<DefinitionCollection>();
