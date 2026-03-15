@@ -8,12 +8,6 @@ namespace KNTyArch.Editor
         enum CreateMenu
         {
             None,
-            Models,
-            Presenter,
-            PresenterFactory,
-            View,
-            InteractiveView,
-            State,
             Token,
             SceneObject
         }
@@ -25,24 +19,6 @@ namespace KNTyArch.Editor
         {
             switch (_createMenu)
             {
-                case CreateMenu.Models:
-                    ModelWindow();
-                    break;
-                case CreateMenu.Presenter:
-                    PresenterWindow();
-                    break;
-                case CreateMenu.PresenterFactory:
-                    PresenterFactoryWindow();
-                    break;
-                case CreateMenu.View:
-                    ViewWindow();
-                    break;
-                case CreateMenu.InteractiveView:
-                    InteractiveViewWindow();
-                    break;
-                case CreateMenu.State:
-                    StateWindow();
-                    break;
                 case CreateMenu.Token:
                     TokenWindow();
                     break;

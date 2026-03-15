@@ -69,69 +69,6 @@ namespace KNTyArch.Editor
             CreateScript(path, $"{name}Factory.cs", ObjectFactoryTemplate.ObjectFactory(name));
         }
 
-        internal static void CreateModels(string className)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            root = EnsureFolder(root, "Models");
-            var definitionPath = EnsureFolder(root, "Definition");
-            var runtimePath = EnsureFolder(root, "Runtime");
-            var viewDataPath = EnsureFolder(root, "ViewData");
-
-            CreateScript(definitionPath, $"{className}Definition.cs", DefinitionTemplate.Definition(className));
-            CreateScript(runtimePath, $"{className}Runtime.cs", RuntimeTemplate.Runtime(className));
-            CreateScript(viewDataPath, $"{className}ViewData.cs", ViewDataTemplate.ViewData(className));
-        }
-
-        internal static void CreatePresenter(string className)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            var path = EnsureFolder(root, "Presenter");
-
-            CreateScript(path, $"{className}Presenter.cs", PresenterTemplate.Presenter(className));
-        }
-
-        internal static void CreateView(string className)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            var path = EnsureFolder(root, "View");
-
-            CreateScript(path, $"{className}View.cs", ViewTemplate.View(className));
-        }
-
-        internal static void CreateInteractiveView(string className, string runtimeName)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            var path = EnsureFolder(root, "InteractiveView");
-
-            CreateScript(path, $"{className}InteractiveView.cs", InteractiveViewTemplate.InteractiveView(className));
-        }
-
-        internal static void CreateViewState(string className, string viewName)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            root = EnsureFolder(root, "State");
-            var path = EnsureFolder(root, $"{viewName}ViewState");
-
-            CreateScript(path, $"{viewName}View{className}State.cs", StateTemplate.ViewState(className, viewName));
-        }
-
-        internal static void CreateInteractiveViewState(string className, string interactiveViewName)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            root = EnsureFolder(root, "State");
-            var path = EnsureFolder(root, $"{interactiveViewName}IVState");
-
-            CreateScript(path, $"{interactiveViewName}IV{className}State.cs", StateTemplate.InteractiveViewState(className, interactiveViewName));
-        }
-
-        internal static void CreatePresenterFactory(string className)
-        {
-            var root = EnsureKNTyArchRootFolder();
-            var path = EnsureFolder(root, "PresenterFactory");
-
-            CreateScript(path, $"{className}PresenterFactory.cs", PresenterFactoryTemplate.PresenterFactory(className));
-        }
-
         internal static void CreateToken(string className)
         {
             var root = EnsureKNTyArchRootFolder();
