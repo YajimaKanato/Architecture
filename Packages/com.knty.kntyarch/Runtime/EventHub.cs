@@ -37,16 +37,24 @@ namespace KNTyArch.Runtime
         /// <returns>アクション削除処理</returns>
         public static IDisposable Subscribe<TEvent>(object owner, Action<TEvent> handler) where TEvent : struct, IToken
         {
+            if (owner == null) return null;
+            if (handler == null) return null;
             var type = typeof(TEvent);
             if (!_subscribers.TryGetValue(type, out var list))
             {
                 list = new List<Delegate>();
                 _subscribers[type] = list;
             }
+            if (!_ownerMap.TryGetValue(owner, out var map))
+            {
+                map = new List<IDisposable>();
+                _ownerMap[owner] = map;
+            }
 
             list.Add(handler);
 
-            var subscription = new Subscription(() =>
+            Subscription subscription = null;
+            subscription = new Subscription(() =>
             {
                 if (_subscribers.TryGetValue(type, out var l))
                 {
@@ -54,12 +62,13 @@ namespace KNTyArch.Runtime
                     if (l.Count == 0)
                         _subscribers.Remove(type);
                 }
+                if (_ownerMap.TryGetValue(owner, out var map))
+                {
+                    map.Remove(subscription);
+                    if (map.Count == 0)
+                        _ownerMap.Remove(owner);
+                }
             });
-            if (!_ownerMap.TryGetValue(owner, out var map))
-            {
-                map = new List<IDisposable>();
-                _ownerMap[owner] = map;
-            }
 
             map.Add(subscription);
 
@@ -72,8 +81,10 @@ namespace KNTyArch.Runtime
         /// <param name="owner">イベント購読の解除者</param>
         public static void Unsubscribe(object owner)
         {
+            if (owner == null) return;
             if (!_ownerMap.TryGetValue(owner, out var map)) return;
-            foreach (var subscription in map)
+            var snapshot = new List<IDisposable>(map);
+            foreach (var subscription in snapshot)
             {
                 subscription.Dispose();
             }
@@ -109,7 +120,6 @@ namespace KNTyArch.Runtime
         {
             /// <summary>購読を解除するアクション</summary>
             readonly Action _dispose;
-            /// <summary>購読解除をしたかどうかのフラグ</summary>
             bool _disposed;
 
             /// <summary>
@@ -118,7 +128,7 @@ namespace KNTyArch.Runtime
             /// <param name="dispose">購読解除をするアクション</param>
             public Subscription(Action dispose)
             {
-                _dispose = dispose;
+                _dispose = dispose ?? throw new ArgumentNullException(nameof(dispose));
             }
 
             /// <summary>
@@ -127,8 +137,8 @@ namespace KNTyArch.Runtime
             public void Dispose()
             {
                 if (_disposed) return;
-                _dispose();
                 _disposed = true;
+                _dispose();
             }
         }
     }
